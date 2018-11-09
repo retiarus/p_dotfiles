@@ -1,0 +1,4 @@
+python/*
+*.swp
+*.swo
+roles/dotfiles/files/.vim/bundle/*
