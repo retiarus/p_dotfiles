@@ -1,4 +1,8 @@
-python/*
 *.swp
 *.swo
+
+python/*
+
 roles/dotfiles/files/.vim/bundle/*
+
+roles/dotfiles/files/.zsh_history
