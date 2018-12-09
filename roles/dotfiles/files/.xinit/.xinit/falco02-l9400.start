@@ -1,6 +1,0 @@
-#!/bin/bash
-
-if [[ $(uname -p | grep "L9400") == *L9400* ]]; then
-	xrandr --output LVDS1 --auto --output VGA1 --auto --left-of LVDS1
-	xmodmap -e "keycode 135 = backslash bar"
-fi
