@@ -7,3 +7,6 @@
 [submodule "/home/peregrinus/p_dotfiles/roles/dotfiles/files/.tmux/plugins/tpm"]
 	path = /home/peregrinus/p_dotfiles/roles/dotfiles/files/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "/home/peregrinus/p_dotfiles/roles/dotfiles/files/.oh-my-zsh"]
+	path = /home/peregrinus/p_dotfiles/roles/dotfiles/files/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
