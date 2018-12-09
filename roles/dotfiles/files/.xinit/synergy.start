@@ -1,0 +1,39 @@
+#!/bin/bash
+
+listHostsServer=()
+listHostsClient=(ubuntu-server-02)
+
+if pgrep -x "synergys" > /dev/null 
+then
+  notify-send --urgency=low -t 3000 "Restart synergy"
+else
+  notify-send --urgency=low -t 3000 "Start synergy"
+fi
+
+host=$(hostname)
+#id=$(echo $host | cut -c 6-7)
+id=06
+
+if [ -x "$(command -v setxkbmap)" ]; then
+  setxkbmap -model thinkpad60 -layout br
+  printf "Definindo teclado para thinkpad60\n"
+fi
+
+printf "Definições para host $host\n"
+if [ -x "$(command -v synergys)" ]; then
+  synergy-core --server --address :248$id --config $HOME/.xinit/synergy-win.conf
+  setxkbmap -model thinkpad60 -layout br
+  printf "Iniciando servidor Synergy $host\n"
+fi
+
+for hostunit in ${listHostsClient[@]}
+do
+  if [[ $hostunit != $host ]]; then
+    if [ -x "$(command -v synergyc)" ]; then
+      synergyc $hostunit:24802
+      setxkbmap -model thinkpad60 -layout br
+      printf "Iniciando cliente Synergy de $host para $hostunit\n"
+    fi
+  fi
+done
+

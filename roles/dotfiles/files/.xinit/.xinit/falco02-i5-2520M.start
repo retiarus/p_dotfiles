@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [[ $(uname -p | grep "i5-2520M") == *i5-2520M* ]]; then
+	xrandr --output LVDS1 --auto --output VGA1 --auto --right-of LVDS1
+	xmodmap -e "keycode 135 = backslash bar"
+fi

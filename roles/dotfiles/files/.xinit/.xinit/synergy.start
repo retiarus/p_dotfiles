@@ -1,0 +1,38 @@
+#!/bin/bash
+
+pid=$(ps -ax | grep -v grep | grep 'synergys' | awk '{print $1}')
+
+if [ -n "$pid" ]; then
+  kill -9 $pid
+fi
+
+if [ -x "$(command -v setxkbmap)" ]; then
+  setxkbmap -model thinkpad60
+  printf "Definindo teclado para thinkpad60\n"
+fi
+
+host=$(hostname)
+
+case "$host" in
+  falco02)
+    printf "Definições para host $host\n"
+    if [ -x "$(command -v synergys)" ]; then
+      if [[ $(ifconfig | grep 192.168.5.2) == *192.168.5.2* ]] ; then
+	synergys --config $HOME/.xinit/synergy.conf
+      fi
+      setxkbmap -model thinkpad60
+      printf "Iniciando servidor Synergy\n"
+    fi
+    ;;
+  falco03)
+    printf "Definiões para host $host\n"
+    if [ -x "$(command -v synergyc)" ]; then 
+      synergyc falco02
+      setxkbmap -model thinkpad60
+      printf "Iniciando cliente Synergy de $host para falco02\n"
+    fi
+    ;;
+  *)
+    ;;
+esac
+
