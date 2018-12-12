@@ -1,0 +1,82 @@
+#!/bin/sh
+
+##########################################################################################
+
+listPro=( /usr/bin/start-pulseaudio-x11 \
+  /usr/bin/mate-volume-control-applet \
+  /usr/bin/mate-power-manager \
+  /usr/bin/system-config-printer-applet \
+  /usr/lib/mate-user-share/mate-user-share \
+  /usr/bin/mate-screensaver \
+  /usr/bin/nm-applet \
+  /usr/bin/parcellite \
+  /usr/bin/blueman-applet \
+  /usr/bin/remmina \
+  /opt/bin/dropbox \
+  /usr/bin/guake \
+  /usr/bin/tilda -h \
+  /usr/bin/uget )
+
+##########################################################################################
+
+# Executa cada elemento do array listPro
+
+for pro in ${listPro[@]}
+do
+  if [ -x "$(command -v $pro)" ]; then
+    printf "$pro está instalado\n"
+    printf "Executando $pro\n"
+    $pro &
+
+  else
+    printf "$pro não está instalado\n"
+  fi
+done
+
+##########################################################################################
+
+# Carrega modulo de audio combine pulse-audio
+
+if [ -x "$(command -v pactl)" ]; then
+  if [ -f "/usr/lib/pulse/modules/module-combine.so" ]; then
+    printf "Carregando modulo de som combine\n"
+    pactl load-module module-combine &
+  else
+    printf "O modulo combine não está disponível\n"
+  fi
+else
+  printf "O comando pactl não está disponível\n"
+fi
+
+##########################################################################################
+
+# Carrega o polkit adequado ao sistema
+
+if [[ $(uname -a | grep "debian") == *debian* ]]; then
+  if [[ $(uname -r | grep "amd64") == *amd64* ]]; then
+    /usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 2>/dev/null &
+  fi
+fi
+
+if [[ $(uname -a | grep "debian") == *debian* ]]; then
+  if [[ $(uname -r | grep "686") == *686* ]]; then
+    /usr/lib/i386-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 2>/dev/null &
+  fi
+fi
+
+##########################################################################################
+
+# Carrega gnome-keyring-daemon
+
+if [ -x "$(command -v gnome-keyring-daemon)" ]; then
+  printf "Carregando gnome-keyring-daemon\n"
+  /usr/bin/gnome-keyring-daemon --start --components=ssh &
+  /usr/bin/gnome-keyring-daemon --start --components=gpg &
+  /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
+  /usr/bin/gnome-keyring-daemon --start --components=secrets &
+else
+  printf "gnome-keyring-daemon não está instalado\n"
+fi
+
+##########################################################################################
+
