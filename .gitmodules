@@ -13,3 +13,6 @@
 [submodule "roles/dotfiles/files/.vim/bundle/gruvbox"]
 	path = roles/dotfiles/files/.vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "roles/dotfiles/files/.vim/bundle/Vundle.vim"]
+	path = roles/dotfiles/files/.vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
