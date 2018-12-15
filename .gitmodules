@@ -1,12 +1,6 @@
 [submodule "vendor/ansible"]
 	path = vendor/ansible
 	url = https://github.com/ansible/ansible
-[submodule "/home/peregrinus/p_dotfiles/roles/dotfiles/files/.tmux/plugins/tpm"]
-	path = /home/peregrinus/p_dotfiles/roles/dotfiles/files/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "/home/peregrinus/p_dotfiles/roles/dotfiles/files/.oh-my-zsh"]
-	path = /home/peregrinus/p_dotfiles/roles/dotfiles/files/.oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "roles/dotfiles/files/.vim/bundle/gruvbox"]
 	path = roles/dotfiles/files/.vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
@@ -16,3 +10,6 @@
 [submodule "vendor/virtualenv"]
 	path = vendor/virtualenv
 	url = https://github.com/pypa/virtualenv
+[submodule "roles/dotfiles/files/.oh-my-zsh"]
+	path = roles/dotfiles/files/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
