@@ -1,0 +1,23 @@
+---
+dotfile_files:
+  - .config/awesome
+  - .config/dconf
+  - .config/gtk-3.0
+  - .config/pluma
+  - .config/sakura
+  - .fonts
+  - .gtkrc-2.0
+  - .gtkrc-2.0.mine
+  - .icons
+  - .oh-my-zsh
+  - .themes
+  - .tmux
+  - .tmux.conf
+  - .vim
+  - .vimrc
+  - .Xdefaults
+  - .xinit
+  - .xprofile
+  - .xprofile.sh
+  - .Xresources
+  - .zshrc
