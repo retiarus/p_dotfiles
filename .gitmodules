@@ -13,3 +13,6 @@
 [submodule "roles/dotfiles/files/.oh-my-zsh"]
 	path = roles/dotfiles/files/.oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
+[submodule "roles/dotfiles/files/.tmux/plugins/tpm"]
+	path = roles/dotfiles/files/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
