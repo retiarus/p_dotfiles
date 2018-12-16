@@ -16,3 +16,6 @@
 [submodule "roles/dotfiles/files/.tmux/plugins/tpm"]
 	path = roles/dotfiles/files/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "roles/dotfiles/files/.config/awesome"]
+	path = roles/dotfiles/files/.config/awesome
+	url = https://github.com/lcpz/awesome-copycats
