@@ -18,4 +18,4 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule "roles/dotfiles/files/.config/awesome"]
 	path = roles/dotfiles/files/.config/awesome
-	url = https://github.com/lcpz/awesome-copycats
+	url = https://github.com/retiarus/awesome-copycats
