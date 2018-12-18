@@ -11,10 +11,10 @@ listPro=(/usr/bin/start-pulseaudio-x11 \
          /usr/bin/nm-applet \
          /usr/bin/parcellite \
          /usr/bin/blueman-applet \
-         /usr/bin/remmina \
+         /usr/bin/remmina -i \
          /opt/bin/dropbox \
          /usr/bin/guake \
-         /usr/bin/uget)
+         /usr/bin/uget-gtk)
 
 ##########################################################################################
 
