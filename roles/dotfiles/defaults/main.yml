@@ -2,6 +2,7 @@
 dotfile_files:
   - .config/awesome
   - .config/dconf
+  - .config/gedit
   - .config/gtk-3.0
   - .config/pluma
   - .config/sakura
