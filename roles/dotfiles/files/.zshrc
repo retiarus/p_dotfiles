@@ -116,6 +116,8 @@ fi
 
 ##################################################################
 
+alias zshconfig="vim ~/.zshrc"
+
 alias fsync='rsync -aAXHhivu --progress'
 
 alias hfalco03='/mnt/falco03/home'
@@ -130,3 +132,6 @@ zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 ##################################################################
+
+DIRCONDA="/var/lib/jupyterhub/anaconda"
+alias conda_env=${DIRCONDA}/bin/activate
