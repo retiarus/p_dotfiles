@@ -1,0 +1,3 @@
+load-module module-combine
+load-module module-zeroconf-publish
+load-module module-zeroconf-discover
