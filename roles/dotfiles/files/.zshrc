@@ -135,3 +135,10 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 DIRCONDA="/var/lib/jupyterhub/anaconda"
 alias conda_env=${DIRCONDA}/bin/activate
+
+##################################################################
+
+function autossh_t () {
+  echo $1
+  autossh -M 0 $USER@$1 -t "tmux new-session -A -s $1"
+}
