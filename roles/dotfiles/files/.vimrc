@@ -1,36 +1,46 @@
+set nocompatible
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.vim/bundle/dein.vim
 
-" Plugin 'tpope/vim-fugitive'
+if dein#load_state('~/.vim/bundle/dein')
+  call dein#begin('~/.vim/bundle/dein')
 
-Plugin 'morhetz/gruvbox'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'w0rp/ale'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
-Plugin 'jalvesaq/Nvim-R'
-Plugin 'gaalcaras/ncm-R'
-Plugin 'lervag/vimtex'
-Plugin 'reedes/vim-pencil'
-Plugin 'kovisoft/slimv'
-Plugin 'ludovicchabant/vim-gutentags'
+  call dein#add('~/.vim/bundle/dein.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
-if !has('nvim')
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  call dein#add('morhetz/gruvbox')
+  call dein#add('w0rp/ale')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('benmills/vimux')
+  call dein#add('jalvesaq/Nvim-R')
+  call dein#add('gaalcaras/ncm-R')
+  call dein#add('lervag/vimtex')
+  call dein#add('reedes/vim-pencil')
+  call dein#add('kovisoft/slimv')
+  call dein#add('ludovicchabant/vim-gutentags')
+  call dein#add('Shougo/vimproc.vim')
+  call dein#add('idanarye/vim-vebugger')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('wsdjeg/dein-ui.vim')
+  call dein#add('python-mode/python-mode')
+
+  call dein#end()
+  call dein#save_state()
 endif
 
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on
+syntax enable
