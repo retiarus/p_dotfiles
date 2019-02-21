@@ -1,6 +1,4 @@
 set nocompatible
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
 
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.vim/bundle/dein.vim
@@ -35,8 +33,13 @@ if dein#load_state('~/.vim/bundle/dein')
   call dein#add('idanarye/vim-vebugger')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('wsdjeg/dein-ui.vim')
   call dein#add('python-mode/python-mode')
+  call dein#add('sillybun/vim-repl')
+  call dein#add('jpalardy/vim-slime')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
+  call dein#add('Shougo/denite.nvim', {'do' : 'UpdateRemotePlugins'})
+  call dein#add('simnalamburt/vim-mundo', {'on': 'MundoToggle'})
+  call dein#add('wsdjeg/dein-ui.vim')
 
   call dein#end()
   call dein#save_state()
