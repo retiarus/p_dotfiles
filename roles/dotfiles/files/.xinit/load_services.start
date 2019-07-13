@@ -79,3 +79,13 @@ fi
 
 ##########################################################################################
 
+if [[ $(hostname) == ubuntu-sever-02 ]]; then
+  if [ -x "$(command -v synergys)" ]; then
+    printf "Carregando synergy daemon\n"
+    synergys -c ~/.xinit/synergy.conf &
+  else
+    printf "synergy não está instalado"
+  fi
+else
+    synergyc 192.168.5.2
+fi
