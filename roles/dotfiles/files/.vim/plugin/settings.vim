@@ -31,7 +31,6 @@ if v:version > 703 || v:version == 703 && has('patch541')
 endif
 
 set formatoptions+=n                  " smart auto-indenting inside numbered lists
-set guifont=Source\ Code\ Pro\ Light:h13
 set guioptions-=T                     " don't show toolbar
 set hidden                            " allows you to hide buffers with unsaved changes without being prompted
 
@@ -47,7 +46,7 @@ if exists('&inccommand')
 endif
 
 set laststatus=2                      " always show status line
-set lazyredraw                        " don't bother updating screen during macro playback
+"set lazyredraw                        " don't bother updating screen during macro playback
 
 set list                              " show whitespace
 set listchars=nbsp:⦸                  " CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
@@ -71,7 +70,6 @@ set shortmess+=I                      " no splash screen
 set shortmess+=O                      " file-read message overwrites previous
 set shortmess+=T                      " truncate non-file messages in middle
 set shortmess+=W                      " don't echo "[w]"/"[written]" when writing
-set shortmess+=a                      " use abbreviations in messages eg. `[RO]` instead of `[readonly]`
 set shortmess+=o                      " overwrite file-written messages
 set shortmess+=t                      " truncate file messages at start
 
@@ -107,17 +105,13 @@ if exists('&swapsync')
 endif
 set switchbuf=usetab                  " try to reuse windows/tabs when switching buffers
 
-if has('syntax')
-  set synmaxcol=200                   " don't bother syntax highlighting long lines
-endif
-
 set tabstop=2                         " spaces per tab
 
 if has('termguicolors')
   set termguicolors                   " use guifg/guibg instead of ctermfg/ctermbg in terminal
 endif
 
-set textwidth=80                      " automatically hard wrap at 80 columns
+"set textwidth=80                      " automatically hard wrap at 80 columns
 
 set updatecount=80                    " update swapfiles every 80 typed chars
 set updatetime=2000                   " CursorHold interval
