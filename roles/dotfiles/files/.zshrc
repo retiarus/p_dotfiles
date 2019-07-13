@@ -140,5 +140,5 @@ alias conda_env=${DIRCONDA}/bin/activate
 
 function autossh_t () {
   echo $1
-  autossh -M 0 $USER@$1 -t "tmux new-session -A -s $1"
+  autossh -M 0 -XY $USER@$1 -t "tmux new-session -A -s $1"
 }
