@@ -34,21 +34,6 @@ done
 
 ##########################################################################################
 
-# Carrega modulo de audio combine pulse-audio
-
-if [ -x "$(command -v pactl)" ]; then
-  if [ -f "/usr/lib/pulse/modules/module-combine.so" ]; then
-    printf "Carregando modulo de som combine\n"
-    pactl load-module module-combine &
-  else
-    printf "O modulo combine não está disponível\n"
-  fi
-else
-  printf "O comando pactl não está disponível\n"
-fi
-
-##########################################################################################
-
 # Carrega o polkit adequado ao sistema
 
 if [[ $(uname -a | grep "debian") == *debian* ]]; then
@@ -79,10 +64,10 @@ fi
 
 ##########################################################################################
 
-if [[ $(hostname) == ubuntu-sever-02 ]]; then
+if [[ $(hostname) == ubuntu-server-02 ]]; then
   if [ -x "$(command -v synergys)" ]; then
     printf "Carregando synergy daemon\n"
-    synergys -c ~/.xinit/synergy.conf &
+    synergys -c ~/.xinit/synergy.conf
   else
     printf "synergy não está instalado"
   fi
