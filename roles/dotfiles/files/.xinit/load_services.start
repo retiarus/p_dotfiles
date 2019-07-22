@@ -72,5 +72,5 @@ if [[ $(hostname) == ubuntu-server-02 ]]; then
     printf "synergy não está instalado"
   fi
 else
-    synergyc 192.168.5.12
+    synergyc 192.168.5.12:24800
 fi
