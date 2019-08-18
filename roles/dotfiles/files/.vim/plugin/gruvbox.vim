@@ -1,5 +1,5 @@
 ""Setting gruvbox configuration
-colorscheme gruvbox
+silent colorscheme gruvbox
 set background=dark    " Setting dark mode
 let g:gruvbox_bold=1
 let g:gruvbox_italic=1
@@ -16,4 +16,3 @@ nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
 nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
 set t_ut=
-
