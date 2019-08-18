@@ -32,4 +32,4 @@
   with_items: '{{dotfile_files}}'
 
 - name: dotfiles | vim bundle
-  command: vim +silent +"call dein#install()" +qall
+  command: vim -E -u ~/.vim/plugin/dein.vim +silent +"call dein#install()" +qall
