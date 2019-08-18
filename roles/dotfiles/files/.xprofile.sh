@@ -58,7 +58,7 @@ export QT_SELECT=5
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_OVERLAY_SCROLLING=0
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
 ##########################################################################################
 
