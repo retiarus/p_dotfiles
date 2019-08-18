@@ -32,4 +32,4 @@
   with_items: '{{dotfile_files}}'
 
 - name: dotfiles | vim bundle
-  command: vim +"call dein#install()" +qall
+  command: vim +silent +"call dein#install()" +qall
