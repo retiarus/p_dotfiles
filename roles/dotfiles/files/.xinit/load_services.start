@@ -64,7 +64,7 @@ fi
 
 ##########################################################################################
 
-if [[ $(hostname) == ubuntu-server-02 ]]; then
+if [[ $(hostname) == ubuntu-02 ]]; then
   if [ -x "$(command -v synergys)" ]; then
     printf "Carregando synergy daemon\n"
     synergys -c ~/.xinit/synergy.conf
@@ -73,5 +73,5 @@ if [[ $(hostname) == ubuntu-server-02 ]]; then
   fi
 else
     printf "start synergy code"
-    synergyc ubuntu-server-02:24800
+    synergyc ubuntu-02:24800
 fi
