@@ -31,5 +31,15 @@
         force=yes
   with_items: '{{dotfile_files}}'
 
+- name: clone powerlevel10k
+  git:
+    repo: 'https://github.com/romkatv/powerlevel10k'
+    dest: "/home/{{ user }}/.oh-my-zsh/themes/powerlevel10k}}"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+  become_user: "{{ user }}"
+
 - name: dotfiles | vim bundle
   command: vim -E -u ~/.vim/plugin/dein.vim +silent +"call dein#install()" +qall
