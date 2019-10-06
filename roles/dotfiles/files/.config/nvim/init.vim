@@ -1,4 +1,7 @@
-if has('nvim')
+" Set Python
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 " Set mapleader key
 let mapleader = ","
 
@@ -41,17 +44,19 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 " Async completation
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Languafe package syntax
+" Snippet
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+" Language package syntax
 Plug 'sheerun/vim-polyglot'
 
+" Async syntax checking
+Plug 'w0rp/ale'
+
+" Plugins to git
 call plug#end()
 
 " Start deoplete at startup
@@ -99,7 +104,8 @@ set guicursor=n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'python': ['pyls'],
+    \ 'sh': ['bash-language-server', 'start']
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -107,4 +113,67 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+" Neosnippet configs
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
 endif
+
+" Maintain indent of current line
+set autoindent
+
+" Always use spaces instead of tabs
+set expandtab
+
+" Spaces per tab
+set tabstop=2
+
+" Ale options ofr cpp 
+let g:ale_cpp_clang_options = '-std=c++17 -Wall -Wextra -Werror'
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall -Wextra -Werror'
+
+let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
+
+let b:ale_linters = {'javascript': ['prettier', 'eslint'],
+      \              'css': ['stylelint'],
+      \              'html': ['stylelint', 'fecs'],
+      \              'python': ['pylama']}
+let b:ale_fixers = {'python': ['remove_trailing_lines',
+      \                        'isort',
+      \                        'yapf'],
+      \             '*': ['remove_trailing_lines', 'trim_whitespace']}
+
+nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+let g:ale_completion_enabled = 1
+
+" Show errors in status line. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+
+" Allow information been printed in a balloon
+let g:ale_set_balloons = 1
+
+" Apply the linter when the file is open
+let g:ale_lint_on_enter = 1
