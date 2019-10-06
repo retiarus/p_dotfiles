@@ -4,6 +4,8 @@ dotfile_files:
   - .config/dconf
   - .config/gedit
   - .config/gtk-3.0
+  - .config/kitty
+  - .config/nvim
   - .config/pluma
   - .config/sakura
   - .fonts
