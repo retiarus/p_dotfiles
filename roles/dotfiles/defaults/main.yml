@@ -1,6 +1,6 @@
 ---
 dotfile_files:
-  - .ansible
+  - .ansible/role
   - .config/awesome
   - .config/dconf
   - .config/gedit
