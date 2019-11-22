@@ -31,6 +31,12 @@ Plug 'vim-airline/vim-airline'
 " Auto close parents, brakets and others
 Plug 'jiangmiao/auto-pairs'
 
+" Plugin to close tags
+Plug 'alvan/vim-closetag'
+
+" Vim-surround
+Plug 'tpope/vim-surround'
+
 " Add devicons
 Plug 'ryanoasis/vim-devicons'
 
@@ -46,9 +52,13 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Async completation
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+" Jedi plugin for deoplete
+Plug 'deoplete-plugins/deoplete-jedi'
+
 " Snippet
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 
 " Language package syntax
 Plug 'sheerun/vim-polyglot'
@@ -56,13 +66,19 @@ Plug 'sheerun/vim-polyglot'
 " Async syntax checking
 Plug 'w0rp/ale'
 
+" Plugin to autoformat text
+Plug 'Chiel92/vim-autoformat'
+
+" Go to defination and acess documentation
+Plug 'davidhalter/jedi-vim'
+
 " Plugins to git
 call plug#end()
 
 " Start deoplete at startup
 let g:deoplete#enable_at_startup = 1
 
-" Set preferences for gruvbox
+"Set preferences for gruvbox
 let g:gruvbox_constrast_dark = 'hard'
 colorscheme gruvbox
 
@@ -137,13 +153,19 @@ endif
 " Maintain indent of current line
 set autoindent
 
+" When indenting with '>', use 4 spaces width
+set shiftwidth=2
+
 " Always use spaces instead of tabs
 set expandtab
 
 " Spaces per tab
 set tabstop=2
 
-" Ale options ofr cpp 
+" Turn off expandtab for makefiles
+autocmd FileType make setlocal noexpandtab
+
+" Ale options ofr cpp
 let g:ale_cpp_clang_options = '-std=c++17 -Wall -Wextra -Werror'
 let g:ale_cpp_gcc_options = '-std=c++17 -Wall -Wextra -Werror'
 
@@ -177,3 +199,56 @@ let g:ale_set_balloons = 1
 
 " Apply the linter when the file is open
 let g:ale_lint_on_enter = 1
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
+
+" Show line numbers in gutter
+set number
+
+"Show relative numbers in gutter
+if exists('+relativenumber')
+  set relativenumber
+endif
+
+" Highlight current line
+set cursorline
+
+" Add key to run vim-autoformat
+noremap <F3> :Autoformat<CR>
+
+" Disable completation in vim-jedi
+let g:jedi#completions_enabled = 0
+
+" open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right"
