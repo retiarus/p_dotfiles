@@ -3,6 +3,11 @@
 
 python/*
 
+roles/dotfiles/files/.local/share/nvim/plugged/*
+roles/dotfiles/files/.local/share/nvim/shada/*
+roles/dotfiles/files/.local/share/nvim/swap/*
+roles/dotfiles/files/.local/share/nvim/site/*
+
 roles/dotfiles/files/.vim/bundle/*
 
 roles/dotfiles/files/.zsh_history
