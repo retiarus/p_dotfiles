@@ -14,6 +14,7 @@ dotfile_files:
   - .gtkrc-2.0
   - .gtkrc-2.0.mine
   - .icons
+  - .local/share/nvim
   - .npmrc
   - .oh-my-zsh
   - .p10k.zsh
