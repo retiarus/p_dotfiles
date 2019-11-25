@@ -87,4 +87,13 @@ if [[ $(hostname) == ubuntu-02 ]]; then
   fi
 fi
 
+if [[ $(hostname) == falco03 ]]; then
+  if [ -x "$(command -v xrandr)" ]; then
+    printf "Configurando monitor\n"
+    xrandr --output VGA-1 --mode 1280x1024 --left-of LVDS-1
+  else
+    printf "xrandr não está instalado"
+  fi
+fi
+
 ##########################################################################################
