@@ -75,3 +75,16 @@ else
     printf "start synergy code"
     synergyc ubuntu-02:24800
 fi
+
+##########################################################################################
+
+if [[ $(hostname) == ubuntu-02 ]]; then
+  if [ -x "$(command -v xrandr)" ]; then
+    printf "Configurando monitor\n"
+    xrandr --output HDMI-3 --left-of HDMI-1
+  else
+    printf "xrandr não está instalado"
+  fi
+fi
+
+##########################################################################################
