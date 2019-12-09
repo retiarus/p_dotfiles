@@ -66,6 +66,9 @@ fi
       # battery               # internal battery
       # time                  # current time
       # example               # example user-defined segment (see prompt_example function below)
+      vim_shell               # vim shell indicator (:sh)
+      # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
+      vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
   )
 
   # To disable default icons for all segments, set POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION=''.
@@ -668,6 +671,19 @@ fi
   # User-defined prompt segments can be customized the same way as built-in segments.
   typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
+
+  # Vi mode to powerlevel
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING='  INSERT'
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=11
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='  NORMAL'
+  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND=10
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING='  VISUAL'
+  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND=12
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND=11
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VICMD_FOREGROUND=10
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIVIS_FOREGROUND=12
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=9
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_{VIINS,VICMD,VIVIS}_CONTENT_EXPANSION=' ☰ '
 }
 
 (( ! p9k_classic_restore_aliases )) || setopt aliases
