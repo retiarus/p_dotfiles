@@ -19,3 +19,6 @@
 [submodule "roles/dotfiles/files/.vim/bundle/dein.vim"]
 	path = roles/dotfiles/files/.vim/bundle/dein.vim
 	url = https://github.com/Shougo/dein.vim
+[submodule "roles/dotfiles/files/.fzf"]
+	path = roles/dotfiles/files/.fzf
+	url = https://github.com/junegunn/fzf.git
