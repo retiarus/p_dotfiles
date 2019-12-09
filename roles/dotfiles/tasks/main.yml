@@ -51,5 +51,25 @@
     force: yes
   become_user: peregrinus
 
+- name: clone zsh-syntax-highlighting
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    dest: "/home/peregrinus/.oh-my-zsh/plugins/zsh-syntax-highlighting/"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+    become_user: peregrinus
+
+- name: clone zsh-autosuggestions
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+    dest: "/home/peregrinus/.oh-my-zsh/plugins/zsh-autosuggestions"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+    become_user: peregrinus
+
 - name: dotfiles | vim bundle
   command: vim -E -u ~/.vim/plugin/dein.vim +silent +"call dein#install()" +qall
