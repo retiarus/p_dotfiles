@@ -71,6 +71,9 @@ plugins=(
   docker-compose
   docker
   extract
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+
 )
 
 # TMUX variables
