@@ -175,3 +175,5 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # activate virtualenvwrapper
 export WORKON_HOME=~/Envs
 source $HOME/.local/bin/virtualenvwrapper.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
