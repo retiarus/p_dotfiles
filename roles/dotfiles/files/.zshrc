@@ -150,30 +150,47 @@ function autossh_t () {
   autossh -M 0 -XY $USER@$1 -t "tmux new-session -A -s $1"
 }
 
+function kitty-ssh () {
+  infocmp xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
+}
+
+##################################################################
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+##################################################################
 
 autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+##################################################################
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+##################################################################
 
 # Config npm global packges
 NPM_PACKAGES="${HOME}/.npm-packages"
 
 export PATH="$NPM_PACKAGES/bin:$PATH"
 
+##################################################################
+
 # Unset manpath so we can inherit from /etc/manpath via the `manpath` command
 unset MANPATH # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
+##################################################################
 
 # activate virtualenvwrapper
 export WORKON_HOME=~/Envs
 source $HOME/.local/bin/virtualenvwrapper.sh
+
+##################################################################
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
