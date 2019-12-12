@@ -59,7 +59,7 @@
     update: yes
     recursive: yes
     force: yes
-    become_user: peregrinus
+  become_user: peregrinus
 
 - name: clone zsh-autosuggestions
   git:
@@ -69,7 +69,7 @@
     update: yes
     recursive: yes
     force: yes
-    become_user: peregrinus
+  become_user: peregrinus
 
 - name: dotfiles | vim bundle
   command: vim -E -u ~/.vim/plugin/dein.vim +silent +"call dein#install()" +qall
