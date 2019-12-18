@@ -73,7 +73,7 @@ plugins=(
   extract
   zsh-syntax-highlighting
   zsh-autosuggestions
-
+  autojump
 )
 
 # TMUX variables
