@@ -194,3 +194,8 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 ##################################################################
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+##################################################################
+
+# stop ranger from load default rc
+export RANGER_LOAD_DEFAULT_RC=False
