@@ -74,6 +74,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   autojump
+  ranger_autojump
 )
 
 # TMUX variables
