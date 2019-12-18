@@ -200,3 +200,10 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 
 # stop ranger from load default rc
 export RANGER_LOAD_DEFAULT_RC=False
+
+##################################################################
+
+# load alias for cat if ccat exists
+if command -v ccat >> /dev/null; then
+  alias cat=ccat
+fi
