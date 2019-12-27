@@ -42,6 +42,10 @@
   with_items: '{{dotfile_files}}'
   ignore_errors: True
 
+- name: install fzf
+  command: ~/.fzf/install --bin
+  become: true
+  become_user: peregrinus
 
 - name: clone powerlevel10k
   git:
