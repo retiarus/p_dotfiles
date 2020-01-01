@@ -22,3 +22,6 @@
 [submodule "roles/dotfiles/files/.fzf"]
 	path = roles/dotfiles/files/.fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "roles/dotfiles/files/.config/neomutt/powerline"]
+	path = roles/dotfiles/files/.config/neomutt/powerline
+	url = https://github.com/sheoak/neomutt-powerline-nerdfonts.git
