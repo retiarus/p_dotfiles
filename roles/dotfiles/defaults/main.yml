@@ -6,6 +6,7 @@ dotfile_files:
   - .config/gedit
   - .config/gtk-3.0
   - .config/kitty
+  - .config/neomutt
   - .config/nvim
   - .config/pluma
   - .config/ranger
