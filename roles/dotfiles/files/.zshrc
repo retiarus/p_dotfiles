@@ -130,7 +130,7 @@ alias fsync='rsync -aAXHhivu --progress'
 
 alias hfalco03='/mnt/falco03/home'
 
-alias  mountS='sshfs -o reconnect,transform_symlinks,ssh_command="autossh -M 0"'
+alias mountS='sshfs -o reconnect,transform_symlinks,ssh_command="autossh -M 0"'
 
 ################ Auto-completar para o comando 'kill' ############
 
@@ -207,3 +207,16 @@ export RANGER_LOAD_DEFAULT_RC=False
 if command -v ccat >> /dev/null; then
   alias cat=ccat
 fi
+
+##################################################################
+
+list_path=($HOME/go/bin \
+           $HOME/bin \
+           /usr/local/bin)
+
+for i in ${list_path[@]}
+do
+  if [[ ":$PATH:" != *":$i:"* ]]; then                                         INT ↵    INSERT
+    export PATH=$i:$PATH
+  fi
+done
