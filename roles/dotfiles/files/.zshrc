@@ -216,7 +216,7 @@ list_path=($HOME/go/bin \
 
 for i in ${list_path[@]}
 do
-  if [[ ":$PATH:" != *":$i:"* ]]; then                                         INT ↵    INSERT
+  if [[ ":$PATH:" != *":$i:"* ]]; then
     export PATH=$i:$PATH
   fi
 done
