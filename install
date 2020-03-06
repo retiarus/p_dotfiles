@@ -10,6 +10,7 @@ ANSIBLE_ENV_SETUP=vendor/ansible/hacking/env-setup
 VIRTUALENV_SETUP=vendor/virtualenv/src/virtualenv.py
 VIRTUALENV_TARGET_DIR=python
 VIRTUALENV_ACTIVATE=$VIRTUALENV_TARGET_DIR/bin/activate
+USER=$(whoami)
 
 usage() {
   echo "./install [options] [roles...]"
@@ -106,7 +107,7 @@ source vendor/ansible/hacking/env-setup &> $DEV_NULL
 HOST_OS=$(uname)
 
 if [ "$HOST_OS" = 'Linux' ]; then
-  ansible-playbook -i inventory ${VERBOSE+-v} ${ROLES} "${EXTRA_ARGS[@]}" linux.yml
+  ansible-playbook -i inventory ${VERBOSE+-v} ${ROLES} "${EXTRA_ARGS[@]}" --extra-vars="user=$USER" linux.yml
 else
   echo "Unknown host OS: $HOST_OS"
   exit 1
