@@ -72,5 +72,13 @@
     recursive: yes
     force: yes
 
+- name: set corret user for roles/dotfiles/files/
+  file:
+    path: ~/p_dotfiles/roles/dotfiles/files
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    recurse: yes
+
 - name: dotfiles | vim bundle
-  command: vim -E -u ~/.vim/plugin/vim-plug.vim +silent +"PlugInstall --sync" +qall
+  command: vim -E -u ~/.vim/plugin/vim-plug.vim +silent +"PlugInstall --sync" +qall 2>/dev/null
