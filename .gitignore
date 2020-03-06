@@ -13,3 +13,5 @@ roles/dotfiles/files/.vim/bundle/*
 roles/dotfiles/files/.zsh_history
 
 roles/dotfiles/files/.config/ranger/plugins/*
+
+roles/dotfiles/files/.local/share/nvim/log
