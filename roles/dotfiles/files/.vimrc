@@ -1,4 +1,4 @@
-source ~/.vim/plugin/dein.vim
+source ~/.vim/plugin/vim-plug.vim
 
 filetype plugin indent on
 syntax enable
