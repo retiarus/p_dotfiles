@@ -166,7 +166,7 @@ export NVM_DIR="$HOME/.nvm"
 autoload -Uz compinit
 compinit
 # Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+[-x "$(command -v kitty)"] && kitty + complete setup zsh | source /dev/stdin
 
 ##################################################################
 
