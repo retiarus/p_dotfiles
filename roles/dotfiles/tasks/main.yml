@@ -73,4 +73,4 @@
     force: yes
 
 - name: dotfiles | vim bundle
-  command: vim -E -u ~/.vim/plugin/dein.vim +silent +"PlugInstall --sync" +qall
+  command: vim -E -u ~/.vim/plugin/vim-plug.vim +silent +"PlugInstall --sync" +qall
