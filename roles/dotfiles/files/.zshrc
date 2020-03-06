@@ -210,6 +210,12 @@ fi
 
 ##################################################################
 
+[[ -s /home/peregrinus/.autojump/etc/profile.d/autojump.sh ]] && source /home/peregrinus/.autojump/etc/profile.d/autojump.sh
+
+##################################################################
+
+autoload -U compinit && compinit -u
+
 list_path=($HOME/go/bin \
            $HOME/bin \
            /usr/local/bin)
