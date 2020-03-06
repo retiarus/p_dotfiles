@@ -72,6 +72,20 @@
     recursive: yes
     force: yes
 
+- name: clone autojump
+  git:
+    repo: 'https://github.com/wting/autojump.git'
+    dest: "~/.autojump"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+
+- name: install autojump
+  command: ./install.py -p ~/
+  args:
+    chdir: ~/.autojump/
+
     #- name: set corret user for roles/dotfiles/files/
     #  file:
     #    path: ~/p_dotfiles/roles/dotfiles/files
