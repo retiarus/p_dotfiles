@@ -44,8 +44,6 @@
 
 - name: install fzf
   command: ~/.fzf/install --bin
-  become: true
-  become_user: peregrinus
 
 - name: clone powerlevel10k
   git:
@@ -55,7 +53,6 @@
     update: yes
     recursive: yes
     force: yes
-  become_user: peregrinus
 
 - name: clone zsh-syntax-highlighting
   git:
@@ -65,7 +62,6 @@
     update: yes
     recursive: yes
     force: yes
-  become_user: peregrinus
 
 - name: clone zsh-autosuggestions
   git:
@@ -75,7 +71,5 @@
     update: yes
     recursive: yes
     force: yes
-  become_user: peregrinus
 
 - name: dotfiles | vim bundle
-  command: vim -E -u ~/.vim/plugin/dein.vim +silent +"call dein#install()" +qall
