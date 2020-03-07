@@ -48,10 +48,9 @@ ENABLE_CORRECTION="true"
 plugins=(
   command-not-found
   compleat
-  colored-man-page
+  colored-man-pages
   colorize
   debian
-  dir-history
   docker
   extract
   git
@@ -73,9 +72,7 @@ plugins=(
   extract
   zsh-syntax-highlighting
   zsh-autosuggestions
-  autojump
-  ranger_autojump
-)
+  autojump)
 
 # TMUX variables
 ZSH_TMUX_AUTOSTART=false
