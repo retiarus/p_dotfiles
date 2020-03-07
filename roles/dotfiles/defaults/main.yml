@@ -31,4 +31,5 @@ dotfile_files:
   - .xprofile
   - .xprofile.sh
   - .Xresources
+  - .zplug
   - .zshrc
