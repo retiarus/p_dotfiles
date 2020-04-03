@@ -60,6 +60,10 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
+" JS/JSX plugin syntax
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+
 " Language package syntax
 Plug 'sheerun/vim-polyglot'
 
@@ -72,14 +76,30 @@ Plug 'Chiel92/vim-autoformat'
 " Go to defination and acess documentation
 Plug 'davidhalter/jedi-vim'
 
-" Plugins to git
+" Tagbar
+Plug 'majutsushi/tagbar'
+
+" Coc plugin
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Git plugins
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
+
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+"Rust Support
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " Start deoplete at startup
 let g:deoplete#enable_at_startup = 1
 
 "Set preferences for gruvbox
-let g:gruvbox_constrast_dark = 'hard'
+let g:gruvbox_constrast = 'hard'
 colorscheme gruvbox
 
 " Toggle NerdTree
@@ -252,3 +272,18 @@ let g:jedi#completions_enabled = 0
 
 " open the go-to function in split, not another buffer
 let g:jedi#use_splits_not_buffers = "right"
+
+" disable polyglot for jsx (javascritp template)
+let g:polyglot_disabled = ['js']
+let g:polyglot_disabled = ['jsx']
+
+" Tagbar keyword set
+nmap <F8> :TagbarToggle<CRu>
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
