@@ -50,10 +50,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 " Async completation
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Jedi plugin for deoplete
-Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'deoplete-plugins/deoplete-jedi'
 
 " Snippet
 Plug 'Shougo/neosnippet.vim'
@@ -99,7 +99,8 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 
 "Set preferences for gruvbox
-let g:gruvbox_constrast = 'hard'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_italic=1
 colorscheme gruvbox
 
 " Toggle NerdTree
