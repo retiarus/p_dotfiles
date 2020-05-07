@@ -79,6 +79,20 @@ fi
 ##########################################################################################
 
 if [[ $(hostname) == ubuntu-02 ]]; then
+  if [ -x "$(command -v barrier)" ]; then
+    printf "Carregando barrier daemon\n"
+    ~/bin/barriers -c ~/.xinit/barrier.conf --enable-crypto --name ubuntu-02 --address :24800
+  else
+    printf "barrier não está instalado"
+  fi
+else
+    printf "start synergy code"
+    ~/bin/barrierc --enable-crypto ubuntu-02:24800
+fi
+
+##########################################################################################
+
+if [[ $(hostname) == ubuntu-02 ]]; then
   if [ -x "$(command -v xrandr)" ]; then
     printf "Configurando monitor\n"
     xrandr --output HDMI-3 --left-of HDMI-1
