@@ -10,6 +10,7 @@ dotfile_files:
   - .config/nvim
   - .config/pluma
   - .config/ranger
+  - .config/rofi
   - .config/sakura
   - .fonts
   - .fzf

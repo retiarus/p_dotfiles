@@ -81,13 +81,13 @@ fi
 if [[ $(hostname) == ubuntu-02 ]]; then
   if [ -x "$(command -v barrier)" ]; then
     printf "Carregando barrier daemon\n"
-    ~/bin/barriers -c ~/.xinit/barrier.conf --enable-crypto --name ubuntu-02 --address :24800
+    $HOME/bin/barriers -c ~/.xinit/barrier.conf --enable-crypto --name ubuntu-02 --address :24800
   else
     printf "barrier não está instalado"
   fi
 else
-    printf "start synergy code"
-    ~/bin/barrierc --enable-crypto ubuntu-02:24800
+    printf "start barrier"
+    $HOME/bin/barrierc --enable-crypto ubuntu-02:24800
 fi
 
 ##########################################################################################
