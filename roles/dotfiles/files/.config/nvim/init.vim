@@ -85,6 +85,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Git plugins
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 
 " Track the engine.
