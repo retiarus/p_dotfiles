@@ -95,9 +95,9 @@ export LANG=pt_BR.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -128,11 +128,9 @@ fi
 
 ##################################################################
 
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 
 alias fsync='rsync -aAXHhivu --progress'
-
-alias hfalco03='/mnt/falco03/home'
 
 alias mountS='sshfs -o reconnect,transform_symlinks,ssh_command="autossh -M 0"'
 
@@ -159,6 +157,16 @@ function kitty-ssh () {
   infocmp xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
 }
 
+function rm-submodule () {
+  submodule=$1
+  git rm "$submodule"
+  rm -rf ".git/modules/$submodule"
+  git config -f ".git/config" --remove-section "submodule.$submodule" 2> /dev/null
+
+  # commit the change
+  git commit -m "remove submodule $submodule"
+}
+
 ##################################################################
 
 export NVM_DIR="$HOME/.nvm"
@@ -167,8 +175,6 @@ export NVM_DIR="$HOME/.nvm"
 
 ##################################################################
 
-autoload -Uz compinit
-compinit
 # Completion for kitty
 [ -x "$(command -v kitty)" ] && kitty + complete setup zsh | source /dev/stdin
 
@@ -218,7 +224,9 @@ fi
 
 ##################################################################
 
-autoload -U compinit && compinit -u
+autoload -Uz compinit && compinit -u
+
+##################################################################
 
 list_path=($HOME/go/bin \
            $HOME/bin \
