@@ -9,6 +9,7 @@ dotfile_files:
   - .config/neomutt
   - .config/nvim
   - .config/pluma
+  - .config/pulse
   - .config/ranger
   - .config/rofi
   - .config/sakura
