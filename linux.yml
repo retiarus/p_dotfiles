@@ -4,3 +4,5 @@
   become_user: "{{ user }}"
   roles:
     - { role: dotfiles, tags: dotfiles }
+    - { role: dotfiles-gruvbox, tags: dotfiles-gruvbox }
+    - { role: install-packages, tags: install-packages }

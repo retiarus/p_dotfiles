@@ -107,7 +107,7 @@ source vendor/ansible/hacking/env-setup &> $DEV_NULL
 HOST_OS=$(uname)
 
 if [ "$HOST_OS" = 'Linux' ]; then
-  ansible-playbook -i inventory ${VERBOSE+-v} ${ROLES} "${EXTRA_ARGS[@]}" --extra-vars="user=$USER" linux.yml
+  ansible-playbook -i localhost, ${VERBOSE+-v} ${ROLES} "${EXTRA_ARGS[@]}" --extra-vars="user=$USER" linux.yml
 else
   echo "Unknown host OS: $HOST_OS"
   exit 1

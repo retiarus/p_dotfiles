@@ -1,0 +1,32 @@
+- name: create .sources
+  file:
+    path: "~/.sources"
+    state: directory
+
+- name: clone autojump
+  git:
+    repo: 'https://github.com/wting/autojump.git'
+    dest: "~/.sources/autojump"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+
+- name: install autojump
+  command: ./install.py -p ~/
+  args:
+    chdir: ~/.sources/autojump/
+
+- name: download rustup
+  get_url:
+    url: https://sh.rustup.rs
+    dest: "~/.sources/rustup.sh"
+    mode: '0740'
+
+- name: install rust
+  command: ./rustup.sh -y
+  args:
+    chdir: ~/.sources/
+
+- name: dotfiles | vim bundle
+  command: vim -E -u ~/.vim/plugin/vim-plug.vim +silent +"PlugInstall --sync" +qall 2>/dev/null

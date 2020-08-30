@@ -1,0 +1,71 @@
+---
+- name: dotfiles | make ~/.config
+  file: path=~/.config state=directory
+
+- name: dotfiles | create backup directory
+  file: path=~/.backups state=directory
+
+- name: dotfiles | check for non-symlink originals
+  command: test -e ~/{{ item }} -a ! -L ~/{{ item }}
+  failed_when: original_check.rc > 1
+  register: original_check
+  with_items: '{{dotfile_files}}'
+  changed_when: false
+
+- name: dotfiles | backup originals
+  command:
+    rsync -aAXHhiu -relative ~/./{{ item.0 }} ~/.backups/
+    creates=~/.backups/{{ item.0 }}
+  with_together:
+    - '{{dotfile_files}}'
+    - '{{original_check.results}}'
+  when: item.1.rc == 0 # item exists and is not a symlink
+  loop_control:
+    label: '{{item.0}}'
+
+- name: dotfiles | remove originals
+  command:
+    rm -r ~/{{ item.0 }}
+    removes=~/{{ item.0 }}
+  with_together:
+    - '{{dotfile_files}}'
+    - '{{original_check.results}}'
+  when: item.1.rc == 0 # item exists and is not a symlink
+  loop_control:
+    label: '{{item.0}}'
+
+- name: dotfiles | create symlinks
+  file: src={{ ansible_env.PWD }}/p_dotfiles/roles/dotfiles-gruvbox/files/{{ item }}
+        path=~/{{ item }}
+        state=link
+        force=yes
+  with_items: '{{dotfile_files}}'
+  ignore_errors: True
+
+- name: install fzf
+  command: ~/.fzf/install --bin
+
+- name: clone autojump
+  git:
+    repo: 'https://github.com/wting/autojump.git'
+    dest: "~/.autojump"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+
+- name: install autojump
+  command: ./install.py -p ~/
+  args:
+    chdir: ~/.autojump/
+
+    #- name: set corret user for roles/dotfiles/files/
+    #  file:
+    #    path: ~/p_dotfiles/roles/dotfiles/files
+    #    state: directory
+    #    owner: "{{ user }}"
+    #    group: "{{ user }}"
+    #    recurse: yes
+
+- name: dotfiles | vim bundle
+  command: vim -E -u ~/.vim/plugin/vim-plug.vim +silent +"PlugInstall --sync" +qall 2>/dev/null

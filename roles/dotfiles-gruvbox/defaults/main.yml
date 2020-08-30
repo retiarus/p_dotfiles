@@ -1,0 +1,6 @@
+---
+dotfile_files:
+  - .ansible/role
+  - .dircolors
+  - .tmux
+  - .zshrc
