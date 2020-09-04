@@ -1,0 +1,9 @@
+load-module module-combine-sink
+load-module module-native-protocol-tcp auth-ip-acl=192.168.5.0/24
+load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
+load-module module-zeroconf-discover
+load-module module-zeroconf-publish
+
+load-module module-bluetooth-discover
+
+set-default-sink combined

@@ -96,3 +96,9 @@ if [[ $(hostname) == falco03 ]]; then
 fi
 
 ##########################################################################################
+
+# set default profile for the sound card
+
+if [[ $(hostname) == ubuntu-02 ]]; then
+  pactl set-card-profile alsa_card.pci-0000_00_14.2 output:analog-surround-71+input:analog-stereo
+fi 
