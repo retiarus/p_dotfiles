@@ -1,6 +1,10 @@
 ---
 dotfile_files:
-  - .ansible/role
+  - .ansible/roles
   - .dircolors
+  - .npmrc
+  - .p10.zsh
+  - .terminfo
   - .tmux
+  - .Xresources
   - .zshrc
