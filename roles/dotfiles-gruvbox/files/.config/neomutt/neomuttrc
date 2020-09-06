@@ -1,0 +1,5 @@
+# for gruvbox:
+# you must load gruvbox theme BEFORE this
+# you terminal 16 colors must be set to gruvbox theme
+source powerline/colors/gruvbox-powerline.neomuttrc
+source powerline/powerline.neomuttrc

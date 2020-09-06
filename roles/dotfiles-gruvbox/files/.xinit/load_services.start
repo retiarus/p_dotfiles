@@ -1,0 +1,72 @@
+#!/bin/bash
+
+##########################################################################################
+
+listPro=(/usr/bin/start-pulseaudio-x11 \
+         /usr/bin/mate-volume-control-applet \
+         /usr/bin/mate-power-manager \
+         /usr/bin/system-config-printer-applet \
+         /usr/lib/mate-user-share/mate-user-share \
+         /usr/bin/mate-screensaver \
+         /usr/bin/nm-applet \
+         /usr/bin/blueman-applet)
+
+##########################################################################################
+
+# Executa cada elemento do array listPro
+
+for pro in ${listPro[@]}
+do
+  if [ -x "$(command -v $pro)" ]; then
+    printf "$pro está instalado\n"
+    printf "Executando $pro\n"
+    $pro &
+
+  else
+    printf "$pro não está instalado\n"
+  fi
+done
+
+##########################################################################################
+
+if [ -x "$(command -v barrier)" ]; then
+  if [[ $(hostname) == falco02 ]]; then
+    path=$(command -v barriers)
+    printf "Carregando barrier daemon\n"V
+    $path -c ~/.xinit/barrier.conf --enable-crypto --name falco02 --address :24800
+  else
+    path=$(command -v barrierc)
+    printf "start barrier client"
+    $path --enable-crypto falco02:24800
+  fi
+else
+  printf "barrier não está instalado"
+fi
+
+##########################################################################################
+
+if [[ $(hostname) == falco02 ]]; then
+  if [ -x "$(command -v xrandr)" ]; then
+    printf "Configurando monitor\n"
+    xrandr --output HDMI-3 --left-of HDMI-1
+  else
+    printf "xrandr não está instalado"
+  fi
+fi
+
+if [[ $(hostname) == falco03 ]]; then
+  if [ -x "$(command -v xrandr)" ]; then
+    printf "Configurando monitor\n"
+    xrandr --output VGA-1 --mode 1440x900 --left-of LVDS-1
+  else
+    printf "xrandr não está instalado"
+  fi
+fi
+
+##########################################################################################
+
+# set default profile for the sound card
+
+if [[ $(hostname) == falco02 ]]; then
+  pactl set-card-profile alsa_card.pci-0000_00_14.2 output:analog-surround-71+input:analog-stereo
+fi
