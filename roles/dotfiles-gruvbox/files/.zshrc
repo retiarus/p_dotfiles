@@ -5,13 +5,53 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# source ~/.zplug/init.zsh
+##################################################################
+
+list_path=($HOME/.cargo/bin
+           $HOME/go/bin \
+           $HOME/.local/bin \
+           /usr/local/bin)
+
+for i in ${list_path[@]}
+do
+  if [[ ":$PATH:" != *":$i:"* ]]; then
+    export PATH=$i:$PATH
+  fi
+done
+
+##################################################################
+
 source ~/.zinit/bin/zinit.zsh
+
+##################################################################
 
 zinit light  "zsh-users/zsh-completions"
 zinit light  "zdharma/fast-syntax-highlighting"
 zinit light  "zsh-users/zsh-autosuggestions"
 zinit light  "zdharma/history-substring-search-multi-word"
+
+##################################################################
+
+zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/compleat/compleat.plugin.zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/history/history.plugin.zsh
+zinit snippet OMZ::plugins/last-working-dir/last-working-dir.plugin.zsh
+zinit snippet OMZ::plugins/npm/npm.plugin.zsh
+zinit snippet OMZ::plugins/pip/pip.plugin.zsh
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
+zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
+zinit snippet OMZ::plugins/vagrant/vagrant.plugin.zsh
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+zinit snippet OMZ::plugins/wakeonlan/wakeonlan.plugin.zsh
+zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
+zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+
+##################################################################
 
 # junegunn/fzf-bin
 zinit ice from"gh-r" as"program"
@@ -44,32 +84,8 @@ zinit light Canop/broot
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-
 zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
 zinit light docker/compose
-
-##################################################################
-
-zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zinit snippet OMZ::plugins/compleat/compleat.plugin.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zinit snippet OMZ::plugins/extract/extract.plugin.zsh
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZ::plugins/history/history.plugin.zsh
-zinit snippet OMZ::plugins/last-working-dir/last-working-dir.plugin.zsh
-zinit snippet OMZ::plugins/npm/npm.plugin.zsh
-zinit snippet OMZ::plugins/pip/pip.plugin.zsh
-zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
-zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
-zinit snippet OMZ::plugins/vagrant/vagrant.plugin.zsh
-zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
-zinit snippet OMZ::plugins/wakeonlan/wakeonlan.plugin.zsh
-zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
-zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
 ##################################################################
 
@@ -160,12 +176,6 @@ function rm-submodule () {
 
 ##################################################################
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-##################################################################
-
 # Completion for kitty
 [ -x "$(command -v kitty)" ] && kitty + complete setup zsh | source /dev/stdin
 
@@ -175,12 +185,7 @@ export NVM_DIR="$HOME/.nvm"
 NPM_PACKAGES="${HOME}/.npm-packages"
 
 export PATH="$NPM_PACKAGES/bin:$PATH"
-
-##################################################################
-
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 
 ##################################################################
 
@@ -210,20 +215,6 @@ fi
 
 ##################################################################
 
-list_path=($HOME/.cargo/bin
-           $HOME/go/bin \
-           $HOME/bin \
-           /usr/local/bin)
-
-for i in ${list_path[@]}
-do
-  if [[ ":$PATH:" != *":$i:"* ]]; then
-    export PATH=$i:$PATH
-  fi
-done
-
-##################################################################
-
 fpath+=~/.zfunc
 
 ##################################################################
@@ -238,4 +229,4 @@ compinit
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 (( ! ${+functions[p10k]} )) || p10k finalize
 
-source /home/peregrinus/.config/broot/launcher/bash/br
+#source /home/peregrinus/.config/broot/launcher/bash/br
