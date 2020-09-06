@@ -1,10 +1,24 @@
 ---
 dotfile_files:
   - .ansible/roles
+  - .config/gedit
+  - .config/gtk-3.0
+  - .config/kitty
+  - .config/neomutt
+  - .config/nvim
+  - .config/pluma
+  - .config/ranger
+  - .config/rofi
+  - .config/sakura
   - .dircolors
+  - .fonts
+  - .icons
   - .npmrc
   - .p10.zsh
   - .terminfo
   - .tmux
+  - .xinit
+  - .xprofile
+  - .xprofile.sh
   - .Xresources
   - .zshrc
