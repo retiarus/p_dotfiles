@@ -67,12 +67,12 @@
 - name: install virtualenvwrapper
   pip:
     name: virtualenvwrapper
-    args: --user
+    extra_args: --user
 
 - name: install pynvim
   pip:
     name: pynvim
-    args: --user
+    extra_args: --user
 
 - name: download rustup
   get_url:
