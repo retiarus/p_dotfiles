@@ -1,6 +1,8 @@
 ---
 dotfile_files:
   - .ansible/roles
+  - .config/alacritty
+  - .config/awesome
   - .config/gedit
   - .config/gtk-3.0
   - .config/kitty
