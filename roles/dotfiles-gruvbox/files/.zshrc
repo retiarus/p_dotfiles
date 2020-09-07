@@ -28,7 +28,6 @@ source ~/.zinit/bin/zinit.zsh
 zinit light  "zsh-users/zsh-completions"
 zinit light  "zdharma/fast-syntax-highlighting"
 zinit light  "zsh-users/zsh-autosuggestions"
-zinit light  "zdharma/history-substring-search-multi-word"
 
 ##################################################################
 
