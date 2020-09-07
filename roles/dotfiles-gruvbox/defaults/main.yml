@@ -14,7 +14,7 @@ dotfile_files:
   - .fonts
   - .icons
   - .npmrc
-  - .p10.zsh
+  - .p10k.zsh
   - .terminfo
   - .tmux
   - .xinit
