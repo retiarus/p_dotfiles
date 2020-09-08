@@ -18,7 +18,9 @@ dotfile_files:
   - .npmrc
   - .p10k.zsh
   - .terminfo
+  - .themes
   - .tmux
+  - .tmux.conf
   - .xinit
   - .xprofile
   - .xprofile.sh
