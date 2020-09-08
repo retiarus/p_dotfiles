@@ -13,6 +13,20 @@
     path: "~/.local/share/nvim/site/autoload/"
     state: directory
 
+- name: create .tmux/plugins
+  file:
+    path: "~/.tmux/plugins"
+    state: directory
+
+- name: install tpm
+  git:
+    repo: 'https://github.com/tmux-plugins/tpm'
+    dest: "~/.tmux/plugins/tpm"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+
 - name: clone autojump
   git:
     repo: 'https://github.com/wting/autojump.git'
