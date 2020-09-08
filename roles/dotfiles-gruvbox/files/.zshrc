@@ -42,7 +42,6 @@ zinit snippet OMZ::plugins/npm/npm.plugin.zsh
 zinit snippet OMZ::plugins/pip/pip.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
-zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
 zinit snippet OMZ::plugins/vagrant/vagrant.plugin.zsh
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
