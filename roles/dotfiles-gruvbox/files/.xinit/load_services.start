@@ -9,7 +9,8 @@ listPro=(/usr/bin/start-pulseaudio-x11 \
          /usr/lib/mate-user-share/mate-user-share \
          /usr/bin/mate-screensaver \
          /usr/bin/nm-applet \
-         /usr/bin/blueman-applet)
+         /usr/bin/blueman-applet \)
+         /usr/bin/deluge)
 
 ##########################################################################################
 
