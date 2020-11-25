@@ -22,6 +22,3 @@
 [submodule "roles/dotfiles/files/.zplug"]
 	path = roles/dotfiles/files/.zplug
 	url = https://github.com/zplug/zplug
-[submodule "roles/dotfiles-gruvbox/files/.config/awesome"]
-	path = roles/dotfiles-gruvbox/files/.config/awesome
-	url = https://github.com/retiarus/awesome-copycats
