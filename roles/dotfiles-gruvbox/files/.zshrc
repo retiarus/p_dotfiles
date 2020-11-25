@@ -209,7 +209,8 @@ fi
 
 ##################################################################
 
-[[ -s /home/peregrinus/.autojump/etc/profile.d/autojump.sh ]] && source /home/peregrinus/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
 
 ##################################################################
 
