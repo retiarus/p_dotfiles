@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=DarK-falco
+Comment=DarK and any color you want!
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+MetacityTheme=DarK-falco
+GtkTheme=DarK-falco
+IconTheme=DarK
+CursorTheme=win8
+NotificationTheme=coco
