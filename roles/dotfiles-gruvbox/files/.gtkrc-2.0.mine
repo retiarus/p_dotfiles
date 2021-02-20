@@ -1,0 +1,10 @@
+gtk-theme-name="W9-Dark"
+gtk-icon-theme-name="Ghost Flat"
+gtk-font-name="DejaVu Sans 10"
+gtk-cursor-theme-name="win8"
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-autohint=1
+gtk-xft-lcdfilter="lcddefault"
+gtk-xft-hintstyle="hintlight"
+gtk-xft-rgba="rgb"
