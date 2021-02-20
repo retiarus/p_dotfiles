@@ -164,7 +164,7 @@ function kitty-ssh () {
 
 function rm-submodule () {
   submodule=$1
-  git rm "$submodule"
+  git rm -f "$submodule"
   rm -rf ".git/modules/$submodule"
   git config -f ".git/config" --remove-section "submodule.$submodule" 2> /dev/null
 
@@ -227,6 +227,10 @@ compinit
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+
+##################################################################
+
+export KUBECONFIG=$KUBECONFIG:~/.kube/config
 
 ##################################################################
 
