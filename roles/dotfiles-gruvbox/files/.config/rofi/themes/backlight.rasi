@@ -13,9 +13,9 @@
 
 * {
   /* General */
-  text-font:                            "Comfortaa 12";
-  icon-font:                            "Hurmit Nerd Font Mono 32";
-  icon-font-small:                      "Hurmit Nerd Font Mono 24";
+  text-font:                            "DejaVu Sans 10";
+  icon-font:                            "Hack Nerd Font 32";
+  icon-font-small:                      "Hack Nerd Font 24";
 
   option-6-listview-spacing:            10px;
 
@@ -121,4 +121,3 @@ element.selected.active {
 element.selected.active {
   border-color: @accent;
 }
-
