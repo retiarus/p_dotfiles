@@ -55,30 +55,6 @@ zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 zinit ice from"gh-r" as"program"
 zinit light junegunn/fzf-bin
 
-# sharkdp/bat
-zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zinit light sharkdp/bat
-
-# ogham/exa, replacement for ls
-zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* exa"
-zinit light ogham/exa
-
-# ripgrep
-zinit ice wait"2" lucid from"gh-r" as"program" mv"ripgrep* ripgrep" pick"ripgrep/rg"
-zinit light  BurntSushi/ripgrep
-
-# dust
-zinit ice wait"2" lucid from"gh-r" as"program" mv"dust* dust" pick"dust/dust"
-zinit light bootandy/dust
-
-# procs
-zinit ice wait"2" lucid from"gh-r" as"program" mv"procs* procs" pick"usr/bin/procs"
-zinit light dalance/procs
-
-# broot
-zinit ice wait"2" lucid from"gh-r" as"program" mv"broot* broot" pick"build/x86_64-unknown-linux-musl/broot"
-zinit light Canop/broot
-
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
