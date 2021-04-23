@@ -17,7 +17,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark-falco"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "Terminus 9"
+theme.font                                      = "DejaVu Sans 10"
 theme.fg_normal                                 = "#ebdbb2"
 theme.fg_focus                                  = "#ebdbb2"
 theme.fg_urgent                                 = "#CC9393"
@@ -106,7 +106,7 @@ local clock = awful.widget.watch(
 theme.cal = lain.widget.cal({
     attach_to = { clock },
     notification_preset = {
-        font = "Terminus 10",
+        font = "DejaVu Sans 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
