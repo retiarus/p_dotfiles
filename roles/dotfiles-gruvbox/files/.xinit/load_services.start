@@ -9,7 +9,7 @@ listPro=(/usr/bin/start-pulseaudio-x11 \
          /usr/lib/mate-user-share/mate-user-share \
          /usr/bin/mate-screensaver \
          /usr/bin/nm-applet \
-         /usr/bin/blueman-applet \)
+         /usr/bin/blueman-applet \
          /usr/bin/deluge)
 
 ##########################################################################################
@@ -39,6 +39,22 @@ if [ -x "$(command -v barrier)" ]; then
     path=$(command -v barrierc)
     printf "start barrier client"
     $path --enable-crypto falco02:24800
+  fi
+else
+  printf "barrier não está instalado"
+fi
+
+##########################################################################################
+
+if [ -x "$(command -v barrier)" ]; then
+  if [[ $(hostname) == falco05 ]]; then
+    path=$(command -v barriers)
+    printf "Carregando barrier daemon\n"V
+    $path -c ~/.xinit/barrier-falco05.conf --enable-crypto --name falco05 --address :24801
+  else
+    path=$(command -v barrierc)
+    printf "start barrier client"
+    $path --enable-crypto falco05:24801
   fi
 else
   printf "barrier não está instalado"
