@@ -18,3 +18,5 @@ roles/dotfiles*/files/.config/ranger/plugins/*
 roles/dotfiles*/files/.local/share/nvim/log
 
 roles/dotfiles*/files/.tmux/plugins/*
+
+roles/dotfiles-gruvbox/files/.config/nvim/plugin/*
