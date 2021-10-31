@@ -65,7 +65,7 @@ fi
 if [[ $(hostname) == falco02 ]]; then
   if [ -x "$(command -v xrandr)" ]; then
     printf "Configurando monitor\n"
-    xrandr --output HDMI-3 --left-of HDMI-1
+    xrandr --output HDMI-2 --mode 1920x1080 --left-of HDMI-3
   else
     printf "xrandr não está instalado"
   fi
