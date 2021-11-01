@@ -170,6 +170,7 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 ##################################################################
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
 
 ##################################################################
 
@@ -186,7 +187,6 @@ fi
 ##################################################################
 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
 
 ##################################################################
 
@@ -210,8 +210,17 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/config
 
 ##################################################################
 
+source ~/.zprofile
+
+##################################################################
+
+alias luamake=/home/peregrinus/.sources/lua-language-server/3rd/luamake/luamake
+
+##################################################################
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 (( ! ${+functions[p10k]} )) || p10k finalize
 
 #source /home/peregrinus/.config/broot/launcher/bash/br
+
