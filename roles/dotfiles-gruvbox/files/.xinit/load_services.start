@@ -3,7 +3,6 @@
 ##########################################################################################
 
 listPro=(/usr/bin/start-pulseaudio-x11 \
-         /usr/bin/mate-volume-control-applet \
          /usr/bin/mate-power-manager \
          /usr/bin/system-config-printer-applet \
          /usr/lib/mate-user-share/mate-user-share \
@@ -34,7 +33,7 @@ if [ -x "$(command -v barrier)" ]; then
   if [[ $(hostname) == falco02 ]]; then
     path=$(command -v barriers)
     printf "Carregando barrier daemon\n"V
-    $path -c ~/.xinit/barrier.conf --enable-crypto --name falco02 --address :24800
+    $path -c ~/.xinit/barrier-falco02.conf --enable-crypto --name falco02 --address :24800
   else
     path=$(command -v barrierc)
     printf "start barrier client"
@@ -52,9 +51,11 @@ if [ -x "$(command -v barrier)" ]; then
     printf "Carregando barrier daemon\n"V
     $path -c ~/.xinit/barrier-falco05.conf --enable-crypto --name falco05 --address :24801
   else
-    path=$(command -v barrierc)
-    printf "start barrier client"
-    $path --enable-crypto falco05:24801
+    if [[ $(hostname) != falco02 ]]; then
+      path=$(command -v barrierc)
+      printf "start barrier client"
+      $path --enable-crypto falco05:24801
+    fi
   fi
 else
   printf "barrier não está instalado"
@@ -82,8 +83,4 @@ fi
 
 ##########################################################################################
 
-# set default profile for the sound card
 
-if [[ $(hostname) == falco02 ]]; then
-  pactl set-card-profile alsa_card.pci-0000_00_14.2 output:analog-surround-71+input:analog-stereo
-fi
