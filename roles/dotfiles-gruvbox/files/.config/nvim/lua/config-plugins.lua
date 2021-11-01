@@ -1,5 +1,5 @@
 return require('packer').startup(function()
-  use 'morhetz/gruvbox'
+  use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   use 'christoomey/vim-tmux-navigator'
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
