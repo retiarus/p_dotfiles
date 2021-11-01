@@ -12,6 +12,7 @@ dotfile_files:
   - .config/ranger
   - .config/rofi
   - .config/sakura
+  - .config/VSCodium/product.json
   - .dircolors
   - .fonts
   - .gtkrc-2.0
