@@ -168,7 +168,10 @@ export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 ##################################################################
 
 # activate virtualenvwrapper
-export WORKON_HOME=~/Envs
+export WORKON_HOME=$HOME/.virt_envs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+
 source $HOME/.local/bin/virtualenvwrapper.sh
 
 ##################################################################
