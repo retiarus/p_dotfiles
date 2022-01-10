@@ -26,7 +26,7 @@ source ~/.zinit/bin/zinit.zsh
 ##################################################################
 
 zinit light  "zsh-users/zsh-completions"
-zinit light  "zdharma/fast-syntax-highlighting"
+zinit light  "zdharma-continuum/fast-syntax-highlighting"
 zinit light  "zsh-users/zsh-autosuggestions"
 
 ##################################################################
@@ -48,6 +48,7 @@ zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 zinit snippet OMZ::plugins/wakeonlan/wakeonlan.plugin.zsh
 zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
 zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zinit snippet OMZ::plugins/rust/rust.plugin.zsh
 
 ##################################################################
 
@@ -130,8 +131,11 @@ alias conda_env=${DIRCONDA}/bin/activate
 ##################################################################
 
 function autossh_t () {
-  echo $1
   autossh -M 0 -XY $USER@$1 -t "tmux new-session -A -s $1"
+}
+
+function autossh_t_idx () {
+  autossh -M 0 -XY $USER@$1 -t "tmux new-session -A -s $2"
 }
 
 function kitty-ssh () {
@@ -221,6 +225,3 @@ alias luamake=/home/peregrinus/.sources/lua-language-server/3rd/luamake/luamake
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 (( ! ${+functions[p10k]} )) || p10k finalize
-
-#source /home/peregrinus/.config/broot/launcher/bash/br
-

@@ -43,7 +43,7 @@
 
 - name: install zinit
   git:
-    repo: 'https://github.com/zdharma/zinit.git'
+    repo: 'https://github.com/zdharma-continuum/zinit.git'
     dest: "~/.zinit/bin"
     clone: yes
     update: yes
@@ -82,12 +82,11 @@
     recursive: yes
     force: yes
 
-- name: install vim-plug to neovim
-  get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "~/.local/share/nvim/site/autoload/plug.vim"
-    mode: '0700'
-
+      #- name: install vim-plug to neovim
+      #  get_url:
+      #    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      #    dest: "~/.local/share/nvim/site/autoload/plug.vim"
+      #    mode: '0700'
 
 - name: install virtualenvwrapper
   pip:
@@ -105,10 +104,10 @@
     dest: "~/.sources/homebrew-install.sh"
     mode: '0700'
 
-- name: install homebrew
-  command: ./homebrew-install.sh < /dev/null
-  args:
-    chdir: ~/.sources/
+      #- name: install homebrew
+      #  command: ./homebrew-install.sh < /dev/null
+      #  args:
+      #    chdir: ~/.sources/
 
 - name: download rustup
   get_url:
@@ -126,10 +125,16 @@
   args:
     chdir: ~/.cargo/bin/
 
-- name: install wezterm
-  command: ./cargo install wezterm
+- name: install zoxide
+  command: ./cargo install zoxide
   args:
     chdir: ~/.cargo/bin/
+
+- name: install wezterm
+  get_url:
+    url: https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu18.04.AppImage
+    dest: ~/bin/wezterm
+    mode: '0500'
 
 - name: install alacritty
   command: ./cargo install alacritty
