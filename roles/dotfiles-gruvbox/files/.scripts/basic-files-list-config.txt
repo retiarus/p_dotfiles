@@ -1,0 +1,9 @@
+/usr/share/themes/
+/usr/share/icons/
+/boot/grub/themes/
+/etc/portage/
+/etc/kernels/
+/etc/lightdm/
+/etc/sudoers
+/etc/ntpd.conf
+

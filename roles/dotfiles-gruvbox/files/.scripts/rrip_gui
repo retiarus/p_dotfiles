@@ -1,0 +1,415 @@
+#!/usr/bin/env ruby
+#    Rubyripper - A secure ripper for Linux/BSD/OSX
+#    Copyright (C) 2007 - 2011 Bouke Woudstra (boukewoudstra@gmail.com)
+#
+#    This file is part of Rubyripper. Rubyripper is free software: 
+#    you can redistribute it and/or modify it under the terms of 
+#    the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+# Put the local lib directory on top of the ruby default lib search path
+$:.insert(0, File.expand_path('../../lib', __FILE__))
+
+# Try to find the rubyripper lib files
+begin
+  require 'rubyripper/base'
+  require 'rubyripper/errors'
+  require 'rubyripper/preferences/main'
+  require 'rubyripper/system/dependency'
+  require 'rubyripper/gtk2/shortMessage'
+  require 'thread'
+rescue LoadError
+  puts 'The rubyripper lib files can\'t be found!'
+  puts 'Perhaps you need to add the directory to the RUBYLIB variable?'
+  exit()
+end
+
+# Try to load the gtk2 files
+begin
+  require 'gtk2'
+rescue LoadError
+  puts "The ruby-gtk2 library could not be found. Is it installed?"; exit()
+end
+
+# The class defines the Rubyripper window.
+# It has a variable frame in it, that can be
+# replaced with other Gtk2 classes.
+
+class GraphicalUserInterface
+attr_reader :instances
+
+  include GetText
+  GetText.bindtextdomain("rubyripper")
+
+  def initialize(prefs=nil, short=nil, deps=nil)
+    @prefs = prefs ? prefs : Preferences::Main.instance
+    @shortMessage = short ? short : ShortMessage.new()
+    @deps = deps ? deps : Dependency.instance
+    @currentInstance = nil
+    @gtkDisc = nil
+  end
+  
+  def start
+    @prefs.load()
+    prepareMainWindow()
+    setupMainContainer()
+    showWelcomeMessage()
+    @gtkWindow.show_all()
+    scanDisc()
+    Gtk.main
+  end
+  
+  def showDisc ; scanDiscResults(); end
+  def continueRip ; updateInterfaceAndStartRip ; end
+  
+  # send updates to the interface, 1 at a time
+  def update(modus, value=false)
+    @updateQueue ||= SizedQueue.new(1)
+    @updateQueue << Thread.new do
+      if modus == "error"
+        @shortMessage.showMessage(value)
+        changeDisplay(@shortMessage)
+        sleep(5)
+        changeDisplay(@gtkDisc)
+        @buttons.each{|button| button.sensitive = true}
+      elsif modus == "ripping_progress"
+        @ripStatus.updateProgress('ripping', value)
+      elsif modus == "encoding_progress"
+        @ripStatus.updateProgress('encoding', value)
+      elsif modus == "log_change"
+        @ripStatus.logChange(value)
+      elsif modus == "dir_exists"
+        require 'rubyripper/gtk2/gtkDirExists'
+        @dirExists = GtkDirExists.new(self, @rubyripper, value)
+        changeDisplay(@dirExists)
+      elsif modus == "finished"
+        showSummary(value)
+      else
+        puts _("Ehh.. There shouldn't be anything else. WTF?")
+        puts _("Secret modus = %s") % [modus]
+      end
+    end
+    @updateQueue.pop()
+  end
+  
+  private
+
+  # set the name, icon and size
+  def prepareMainWindow
+    @gtkWindow = Gtk::Window.new('Rubyripper')
+    setIconForWindow()
+    @gtkWindow.set_default_size(570, 470) #width, height
+  end
+  
+  # find the icon
+  def setIconForWindow
+    iconPaths = [File.expand_path('../../share/icons/hicolor/128x128/apps', __FILE__), "/usr/local/share/icons/hicolor/128x128/apps"]
+    iconPaths.each do |path|
+      if File.exist?(file = File.join(path, 'rubyripper.png'))
+        @gtkWindow.icon = Gdk::Pixbuf.new(file)
+        break
+      end
+    end
+  end
+  
+  # setup the central container
+  def setupMainContainer
+    @mainHbox = Gtk::HBox.new(false,5)
+    createButtonsLeftside()
+    setButtonsLeftsideSignals()
+    @mainHbox.pack_start(@vbuttonbox1,false,false,0)
+    @gtkWindow.add(@mainHbox)
+  end
+  
+  # launch the welcome message and announce the scanning
+  def showWelcomeMessage
+    @shortMessage.welcome()
+    changeDisplay(@shortMessage)
+  end
+   
+  def scanDisc
+    Thread.new do
+      @buttons.each{|button| button.sensitive = false}
+      if @gtkDisc ; @gtkDisc.refresh
+      else
+        require 'rubyripper/gtk2/gtkDisc'
+        @gtkDisc = GtkDisc.new()
+        @gtkDisc.start()
+      end
+    
+      scanDiscResults()
+    end
+  end
+  
+  # TODO cancel tocscan
+  # TODO freedb multiple choice
+  def scanDiscResults   
+    if @gtkDisc.error.nil?
+      showOpenTray if @buttontext[2].text != _("Open tray")
+      @buttons.each{|button| button.sensitive = true}
+      changeDisplay(@gtkDisc)
+    else
+      @shortMessage.showError(@gtkDisc.error)
+      @buttons[0..2].each{|button| button.sensitive = true} ; @buttons[4].sensitive = true
+      changeDisplay(@shortMessage)
+    end
+  end
+  
+  # The abort button transforms into exit when the rip is finished or aborted
+  def updateAbortButtonToExit
+    @buttontext[4].set_text('_' + _("Exit"), true)
+    @buttonicons[4].stock = Gtk::Stock::QUIT
+  end
+  
+  # The exit button transforms into abort when the rip is started
+  def updateExitButtonToAbort
+    @buttontext[4].set_text('_' + _("Abort"), true)
+    @buttonicons[4].stock = Gtk::Stock::CANCEL
+  end
+  
+  # The central function that manages the display on the right side
+  def changeDisplay(object)
+    updateAbortButtonToExit() if @currentInstance == "RipStatus"
+
+    @mainHbox.remove(@mainHbox.children[-1]) if @currentInstance
+    @currentInstance = object.class.to_s # save the name of the class as a string
+    @mainHbox.add(object.display)
+    
+    updateExitButtonToAbort if @currentInstance == "RipStatus"
+    object.display.show_all()
+  end
+  
+  # the leftside menu that is always visible
+  def createButtonsLeftside
+    @vbuttonbox1 = Gtk::VButtonBox.new #child of @mainHbox
+    @buttons = [Gtk::Button.new, Gtk::Button.new, Gtk::Button.new, Gtk::Button.new, Gtk::Button.new]
+    @buttons.each{|button| button.sensitive = false}
+    @buttontext = [Gtk::Label.new('_'+_('Preferences'),true), Gtk::Label.new('_'+_("Scan drive"), true), Gtk::Label.new('_'+_("Open tray"),true), Gtk::Label.new('_'+_("Rip cd now!"),true), Gtk::Label.new('_'+_("Exit"),true)]
+    @buttonicons = [Gtk::Image.new(Gtk::Stock::PREFERENCES, Gtk::IconSize::LARGE_TOOLBAR), Gtk::Image.new(Gtk::Stock::REFRESH, Gtk::IconSize::LARGE_TOOLBAR), Gtk::Image.new(Gtk::Stock::GOTO_BOTTOM, Gtk::IconSize::LARGE_TOOLBAR), Gtk::Image.new(Gtk::Stock::CDROM, Gtk::IconSize::LARGE_TOOLBAR), Gtk::Image.new(Gtk::Stock::QUIT, Gtk::IconSize::LARGE_TOOLBAR)]
+    @vboxes = [Gtk::VBox.new, Gtk::VBox.new, Gtk::VBox.new,  Gtk::VBox.new, Gtk::VBox.new]
+
+    index = 0
+    @vboxes.each do |vbox|
+      vbox.add(@buttonicons[index])
+      vbox.add(@buttontext[index])
+      @buttons[index].add(@vboxes[index])
+      index += 1
+    end
+    @buttons.each{|button| @vbuttonbox1.pack_start(button,false,false)}
+  end
+
+  def setButtonsLeftsideSignals
+    @gtkWindow.signal_connect("destroy") {savePreferences(); exit()}
+    @gtkWindow.signal_connect("delete_event") {savePreferences(); exit()}
+    @buttons[0].signal_connect("activate") {@buttons[0].signal_emit("released")}
+    @buttons[0].signal_connect("released") {savePreferences(); showDiscOrPreferences()}
+    @buttons[1].signal_connect("clicked") {savePreferences(); refreshDisc()}
+    @buttons[2].signal_connect("clicked") {savePreferences(); handleTray()}
+    @buttons[3].signal_connect("clicked") {savePreferences(); startRip()}
+    @buttons[4].signal_connect("clicked") {exitButton()}
+  end
+  
+  def exitButton
+    if @buttontext[4].text == _("Exit")
+      savePreferences(); exit()
+    else
+      Thread.new do
+        @rubyripper.cancelRip() # Let rubyripper stop ripping and encoding
+        @rubyripper = nil # kill the instance
+        @rubyripperThread.exit() # kill the thread
+        @buttons.each{|button| button.sensitive = true}
+        changeDisplay(@gtkDisc)
+      end
+    end
+  end
+
+  def cancelTocScan
+    `killall cdrdao 2>&1`
+  end
+
+  def savePreferences
+    if @currentInstance == 'GtkPreferences'
+      @buttontext[0].set_text('_'+_('Preferences'),true)
+      @buttonicons[0].stock = Gtk::Stock::PREFERENCES
+      @gtkPrefs.save
+    end
+  end
+
+  def exit
+    `killall cdparanoia 2>&1`
+    `killall cdrdao 2>&1`
+    Gtk.main_quit
+  end
+  
+  # make sure the gtk preferences is loaded
+  def startupPreferences
+    if not @gtkPrefs
+      require 'rubyripper/gtk2/gtkPreferences'
+      @gtkPrefs = GtkPreferences.new()
+      @gtkPrefs.start()
+    end
+    @gtkPrefs.display.page = 0
+    changeDisplay(@gtkPrefs) 
+  end
+  
+  def refreshDisc
+    @shortMessage.refreshDisc()
+    changeDisplay(@shortMessage)
+    scanDisc()
+  end
+
+  # Switch context between disc info and preferences
+  # The button should change to the opposite value
+  def showDiscOrPreferences
+    @buttons.each{|button| button.sensitive = false}
+    Thread.new do
+      if @currentInstance != 'GtkPreferences'
+        @buttontext[0].set_text('_'+_('Disc info'), true)
+        @buttonicons[0].stock = Gtk::Stock::INFO
+        startupPreferences()
+        @buttons[0..2].each{|button| button.sensitive = true}
+        @buttons[3].sensitive = true if @gtkDisc && @gtkDisc.error.nil?
+        @buttons[4].sensitive = true
+      elsif @gtkDisc && @gtkDisc.error.nil?
+        changeDisplay(@gtkDisc)
+        @buttons.each{|button| button.sensitive = true}
+      else
+        refreshDisc()
+      end
+    end
+  end
+
+  #Fetch the cddb info if user wants to
+  def handleFreedb(choice = false)
+    if choice == false
+      @settings['cd'].md.freedb(@settings, @settings['first_hit'])
+    elsif choice == -1
+      @settings['cd'].md.freedbChoice(0)
+    else
+      @settings['cd'].md.freedbChoice(choice)
+    end
+
+    status = @settings['cd'].md.status
+
+    if status == true #success
+      @gtkDisc.updateMetadata()
+      if @currentInstance != 'GtkDisc'
+        changeDisplay(@gtkDisc)
+      end
+    elsif status[0] == "choices"
+      @instances['MultipleFreedbHits'] = MultipleFreedbHits.new(status[1], self)
+      changeDisplay(@instances['MultipleFreedbHits'])
+    elsif status[0] == "networkDown" || status[0] == "noMatches" || status[0] == "unknownReturnCode" || status[0] == "NoAudioDisc"
+      update("error", status[1])
+    else
+      puts "Unknown error with Metadata class."
+    end
+  end
+  
+  # TODO cancelTocScan()
+  def handleTray
+    @buttons.each{|button| button.sensitive = false}
+    Thread.new do
+      if @buttontext[2].text == _("Open tray")
+        openDrive()
+        askForDisc()
+      else
+        closeDrive()
+        scanDisc()
+      end
+    end
+  end
+  
+  # open the drive, so reset the gtk disc object
+  def openDrive
+    @gtkDisc = nil
+    @shortMessage.openTray()
+    changeDisplay(@shortMessage)
+    @deps.eject(@prefs.cdrom)
+  end
+  
+  def showClosedTray
+    @buttontext[2].set_text('_'+_("Close tray"), true)
+    @buttonicons[2].stock = Gtk::Stock::GOTO_TOP
+  end
+  
+  def showOpenTray
+    @buttontext[2].set_text('_'+_("Open tray"),true)
+    @buttonicons[2].stock = Gtk::Stock::GOTO_BOTTOM
+  end
+  
+  def askForDisc
+    showClosedTray()
+    @shortMessage.askForDisc()
+    @buttons[0..2].each{|button| button.sensitive = true}
+    @buttons[4].sensitive = true
+  end
+  
+  # close the drive again
+  def closeDrive
+    @shortMessage.closeTray()
+    changeDisplay(@shortMessage)
+    @deps.closeTray(@prefs.cdrom)
+    showOpenTray()
+  end
+
+  def startRip
+    @buttons[0..3].each{|button| button.sensitive = false}
+    @gtkDisc.save()
+    
+    require 'rubyripper/rubyripper'
+    @rubyripper = Rubyripper.new(self, @gtkDisc.disc, @gtkDisc.selection)
+
+    errors = @rubyripper.checkConfiguration()  
+    if errors.empty?
+      updateInterfaceAndStartRip()
+    else
+      @buttons[0..3].each{|button| button.sensitive = true}
+      showErrors(errors)
+    end
+  end
+  
+  def updateInterfaceAndStartRip
+    require 'rubyripper/gtk2/ripStatus'
+    @rubyripperThread = Thread.new do
+      @buttons[0..3].each{|button| button.sensitive = false}
+      @ripStatus = RipStatus.new()
+      changeDisplay(@ripStatus)
+      @rubyripper.startRip
+    end
+  end
+
+  # build the text then show the errors
+  def showErrors(errors)
+    text = ''
+    text << _("Please solve the following configuration errors first:") + "\n"
+    errors.each do |error|
+      text << '  > ' + Errors.send(error[0], error[1]) + "\n"
+    end
+    update("error", text)
+  end
+  
+  def showSummary(succes)
+    @buttons[0..3].each{|button| button.sensitive = true}
+    require 'rubyripper/gtk2/gtkSummary'
+    @gtkSummary = GtkSummary.new(@rubyripper.fileScheme, @rubyripper.summary, succes)
+    changeDisplay(@gtkSummary)
+    showClosedTray if @prefs.eject == true
+    @rubyripper = false # some resetting of variables, I suspect some optimization of ruby otherwise would prevent refreshing
+  end
+end
+
+if __FILE__ == $0
+  Gtk.init
+  app = GraphicalUserInterface.new()
+  app.start()
+end

@@ -1,5 +1,6 @@
 ---
 dotfile_files:
+  - bin
   - .ansible/roles
   - .config/alacritty
   - .config/awesome
@@ -23,6 +24,7 @@ dotfile_files:
   - .terminfo
   - .themes
   - .tmux.conf
+  - .scripts
   - .xinit
   - .xprofile
   - .xprofile.sh

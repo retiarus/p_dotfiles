@@ -1,0 +1,17 @@
+#!/bin/bash
+
+numberProcessors=$(nproc --all)
+number=$(($(nproc --all)-1))
+HOME=/home/peregrinus
+
+modprobe zram num_devices=$numberProcessors
+
+for i in $(seq 0 $number)
+do
+  echo "Iniciando disco de ram zram$i"
+  $HOME/scripts/zswap.sh start zram$i
+done
+
+echo "O número de discos de ram é $number"
+
+
