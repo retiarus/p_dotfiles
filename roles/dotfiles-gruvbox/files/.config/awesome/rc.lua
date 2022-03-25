@@ -435,6 +435,14 @@ globalkeys = my_table.join(
               {description = "run browser", group = "launcher"}),
     awful.key({ modkey }, "a", function () awful.spawn(gui_editor) end,
               {description = "run gui editor", group = "launcher"}),
+    
+    -- Hibernate/Sleep/Hybrid-Sleep system
+    awful.key({ modkey, altkey, "Shift" }, "h", function () awful.spawn.with_shell("sudo systemctl hybrid-sleep") end,
+              {description = "run sudo systemctl hybrid-sleep", group = "launcher"}),
+    awful.key({ modkey, altkey }, "h", function () awful.spawn.with_shell("sudo systemctl hibernate") end,
+              {description = "run sudo systemctl hibernate", group = "launcher"}),
+    awful.key({ modkey, altkey }, "s", function () awful.spawn.with_shell("sudo systemctl suspend") end,
+              {description = "run sudo systemctl suspend", group = "launcher"}),
 
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
