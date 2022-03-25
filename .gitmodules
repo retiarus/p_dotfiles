@@ -22,3 +22,6 @@
 [submodule "roles/dotfiles/files/.zplug"]
 	path = roles/dotfiles/files/.zplug
 	url = https://github.com/zplug/zplug
+[submodule "roles/dotfiles-gruvbox/files/.config/nvim"]
+	path = roles/dotfiles-gruvbox/files/.config/nvim
+	url = https://github.com/retiarus/Neovim-from-scratch
