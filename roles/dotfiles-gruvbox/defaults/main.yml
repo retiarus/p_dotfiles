@@ -26,6 +26,7 @@ dotfile_files:
   - .tmux.conf
   - .scripts
   - .xinit
+  - .xinitrc
   - .xprofile
   - .xprofile.sh
   - .Xresources
