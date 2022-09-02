@@ -4,6 +4,7 @@ dotfile_files:
   - .ansible/roles
   - .config/alacritty
   - .config/awesome
+  - .config/bat
   - .config/gedit
   - .config/gtk-3.0
   - .config/kitty
@@ -14,6 +15,11 @@ dotfile_files:
   - .config/rofi
   - .config/sakura
   - .config/VSCodium/product.json
+  - .config/zellij
+  - .config/pulse/client.conf
+  - .config/pulse/daemon.conf
+  - .config/pulse/default.pa
+  - .config/pulse/system.pa
   - .dircolors
   - .fonts
   - .gtkrc-2.0
