@@ -441,7 +441,7 @@ globalkeys = my_table.join(
               {description = "run sudo systemctl hybrid-sleep", group = "launcher"}),
     awful.key({ modkey, altkey }, "h", function () awful.spawn.with_shell("sudo systemctl hibernate") end,
               {description = "run sudo systemctl hibernate", group = "launcher"}),
-    awful.key({ modkey, altkey }, "s", function () awful.spawn.with_shell("sudo systemctl suspend") end,
+    awful.key({ modkey, altkey }, "s", function () awful.spawn.with_shell("suspend.sh") end,
               {description = "run sudo systemctl suspend", group = "launcher"}),
 
     -- alternatively use rofi, a dmenu-like application with more features
