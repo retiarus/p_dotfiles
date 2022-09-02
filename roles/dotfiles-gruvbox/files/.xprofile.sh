@@ -47,7 +47,7 @@ export GTK_OVERLAY_SCROLLING=0
 
 ##########################################################################################
 
-export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$HOME/bin/scripts:/usr/local/bin:$PATH
 
 ##########################################################################################
 
