@@ -31,12 +31,6 @@ zinit light  "zsh-users/zsh-autosuggestions"
 
 ##################################################################
 
-export FZF_BASE="/home/peregrinus/.zinit/plugins/junegunn---fzf-bin/fzf"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
-
-##################################################################
-
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit snippet OMZ::plugins/compleat/compleat.plugin.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
@@ -61,6 +55,10 @@ zinit snippet OMZ::plugins/terraform/terraform.plugin.zsh
 zinit snippet OMZ::plugins/zoxide/zoxide.plugin.zsh
 zinit snippet OMZ::plugins/rust/rust.plugin.zsh
 
+export FZF_BASE="/home/peregrinus/.sources/fzf/bin/fzf"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
+
 ##################################################################
 
 # junegunn/fzf-bin
@@ -70,8 +68,8 @@ zinit light junegunn/fzf-bin
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
-zinit light docker/compose
+#zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
+#zinit light docker/compose
 
 ##################################################################
 
@@ -123,7 +121,7 @@ alias ls="ls --color"
 alias bat="batcat"
 alias cat="batcat"
 
-alias zshrc="nvim ~/.zshrc"
+alias zrc="nvim ~/.zshrc"
 
 alias fsync='rsync -aAXHhivu --progress'
 
