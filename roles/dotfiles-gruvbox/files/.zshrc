@@ -31,6 +31,12 @@ zinit light  "zsh-users/zsh-autosuggestions"
 
 ##################################################################
 
+export FZF_BASE="/home/peregrinus/.zinit/plugins/junegunn---fzf-bin/fzf"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
+
+##################################################################
+
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit snippet OMZ::plugins/compleat/compleat.plugin.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
@@ -48,6 +54,11 @@ zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 zinit snippet OMZ::plugins/wakeonlan/wakeonlan.plugin.zsh
 zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
 zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zinit snippet OMZ::plugins/docker/docker.plugin.zsh
+zinit snippet OMZ::plugins/helm/helm.plugin.zsh
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zinit snippet OMZ::plugins/terraform/terraform.plugin.zsh
+zinit snippet OMZ::plugins/zoxide/zoxide.plugin.zsh
 zinit snippet OMZ::plugins/rust/rust.plugin.zsh
 
 ##################################################################
@@ -109,8 +120,10 @@ fi
 ##################################################################
 
 alias ls="ls --color"
+alias bat="batcat"
+alias cat="batcat"
 
-alias zshconfig="nvim ~/.zshrc"
+alias zshrc="nvim ~/.zshrc"
 
 alias fsync='rsync -aAXHhivu --progress'
 
@@ -142,6 +155,11 @@ function kitty-ssh () {
   infocmp xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
 }
 
+function print_log () {
+  # tail -f /var/log/pacman.log | bat --paging=never -l log
+  tail -f $1 | bat --paging=never -l log
+}
+
 function rm-submodule () {
   submodule=$1
   git rm -f "$submodule"
@@ -150,6 +168,11 @@ function rm-submodule () {
 
   # commit the change
   git commit -m "remove submodule $submodule"
+}
+
+alias bathelp='batcat --plain --language=help'
+function help() {
+    "$@" --help 2>&1 | bathelp
 }
 
 ##################################################################
@@ -176,20 +199,12 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 
 ##################################################################
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s ~/.sources/fzf/shell/key-bindings.zsh ]] && source ~/.sources/fzf/shell/key-bindings.zsh
-
-##################################################################
 
 # stop ranger from load default rc
 export RANGER_LOAD_DEFAULT_RC=False
 
-##################################################################
-
-# load alias for cat if ccat exists
-if command -v ccat >> /dev/null; then
-  alias cat=ccat
-fi
+# bat man
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 ##################################################################
 
@@ -213,6 +228,7 @@ bindkey  "^[[3~"  delete-char
 
 ##################################################################
 
+source <(kubectl completion zsh)
 export KUBECONFIG=$KUBECONFIG:~/.kube/config
 
 ##################################################################
@@ -222,6 +238,10 @@ source ~/.zprofile
 ##################################################################
 
 alias luamake=/home/peregrinus/.sources/lua-language-server/3rd/luamake/luamake
+
+##################################################################
+
+eval "$(zoxide init zsh)"
 
 ##################################################################
 
