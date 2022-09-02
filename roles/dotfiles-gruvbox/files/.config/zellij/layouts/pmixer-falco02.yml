@@ -23,7 +23,9 @@ tabs:
     run:
       command: {cmd: pulsemixer}
   - name: "jack" # tab 2
+    run:
+      command: { cmd: zsh, args: ["-c", "cd ~/bin/scripts && ./start_jack_falco02.sh; sleep 2 && zsh"] }
 
 session:
-  name: "pmixer-falco06" # a string, that names the session
+  name: "pmixer-falco02" # a string, that names the session
   attach: true # default `true`. If session exists, re-attach.
