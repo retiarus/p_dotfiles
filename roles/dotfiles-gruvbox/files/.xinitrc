@@ -1,4 +1,4 @@
-source ~/.xprofile.sh
+~/.xprofile.sh &
 
 exec awesome
 
