@@ -40,6 +40,22 @@
   command: ./install.py -p ~/.local/
   args:
     chdir: ~/.sources/autojump/
+  ignore_errors: true
+
+- name: clone marker
+  git:
+    repo: 'https://github.com/pindexis/marker'
+    dest: "~/.sources/marker"
+    clone: yes
+    update: yes
+    recursive: yes
+    force: yes
+
+- name: install marker
+  command: ./install.py -p ~/.local/
+  args:
+    chdir: ~/.sources/marker/
+  ignore_errors: true
 
 - name: install zinit
   git:
@@ -49,6 +65,9 @@
     update: yes
     recursive: yes
     force: yes
+
+- name: install prettier
+  command: ~/.p_dotfiles/scripts/npm-wrapper-global.sh prettier
 
 - name: install fzf
   git:
@@ -82,12 +101,6 @@
     recursive: yes
     force: yes
 
-      #- name: install vim-plug to neovim
-      #  get_url:
-      #    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      #    dest: "~/.local/share/nvim/site/autoload/plug.vim"
-      #    mode: '0700'
-
 - name: install virtualenvwrapper
   pip:
     name: virtualenvwrapper
@@ -96,6 +109,11 @@
 - name: install pynvim
   pip:
     name: pynvim
+    extra_args: --user
+
+- name: install black
+  pip:
+    name: black
     extra_args: --user
 
 - name: download homebrew
@@ -124,19 +142,35 @@
   command: ./cargo install zellij
   args:
     chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: xplr
+  command: ./cargo install --locked --force xplr
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
 
 - name: install zoxide
   command: ./cargo install zoxide
   args:
     chdir: ~/.cargo/bin/
+  ignore_errors: true
 
 - name: install wezterm
   get_url:
     url: https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu18.04.AppImage
     dest: ~/bin/wezterm
     mode: '0500'
+  ignore_errors: true
 
 - name: install alacritty
   command: ./cargo install alacritty
   args:
     chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install ripgrep
+  command: ./cargo install ripgrep
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
