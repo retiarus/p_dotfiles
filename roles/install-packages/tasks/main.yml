@@ -174,3 +174,15 @@
   args:
     chdir: ~/.cargo/bin/
   ignore_errors: true
+
+- name: download Insomnia
+  get_url:
+    url: https://github.com/Kong/insomnia/releases/download/core%402022.5.1/Insomnia.Core-2022.5.1.AppImage
+    dest: "~/.sources/Insomnia.Core-2022.5.1.AppImage"
+    mode: '0700'
+
+- name: create link
+  file:
+    src: ~/.sources/Insomnia.Core-2022.5.1.AppImage
+    dest: ~/bin/insomnia
+    state: link
