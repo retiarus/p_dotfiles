@@ -62,8 +62,8 @@ export FZF_BASE="/home/peregrinus/.sources/fzf/bin/fzf"
 ##################################################################
 
 # junegunn/fzf-bin
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf-bin
+#zinit ice from"gh-r" as"program"
+#zinit light junegunn/fzf-bin
 
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
