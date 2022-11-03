@@ -1,0 +1,31 @@
+---
+template:
+  direction: Horizontal
+  parts:
+    - direction: Vertical  # part 1
+      borderless: true
+      split_size:
+        Fixed: 1
+      run:
+        plugin:
+          location: "zellij:tab-bar"
+    - direction: Vertical # part 2
+      body: true
+    - direction: Vertical # part 3
+      borderless: true
+      split_size:
+        Fixed: 2
+      run:
+        plugin:
+          location: "zellij:status-bar"
+tabs:
+  - name: "audio" # tab 1
+    run:
+      command: {cmd: start_jack.sh}
+  - name: "mqtt" # tab 2
+    run:
+      command: {cmd: mqtt.sh}
+
+session:
+  name: "falco06" # a string, that names the session
+  attach: true # default `true`. If session exists, re-attach.
