@@ -1,0 +1,31 @@
+---
+template:
+  direction: Horizontal
+  parts:
+    - direction: Vertical  # part 1
+      borderless: true
+      split_size:
+        Fixed: 1
+      run:
+        plugin:
+          location: "zellij:tab-bar"
+    - direction: Vertical # part 2
+      body: true
+    - direction: Vertical # part 3
+      borderless: true
+      split_size:
+        Fixed: 2
+      run:
+        plugin:
+          location: "zellij:status-bar"
+tabs:
+  - name: "pulsemixer" # tab 1
+    run:
+      command: {cmd: pulsemixer}
+  - name: "jack" # tab 2
+    run:
+      command: { cmd: zsh, args: ["-c", "cd ~/bin/scripts && ./start_jack_falco05.sh; sleep 2 && zsh"] }
+
+session:
+  name: "pmixer-falco05" # a string, that names the session
+  attach: true # default `true`. If session exists, re-attach.
