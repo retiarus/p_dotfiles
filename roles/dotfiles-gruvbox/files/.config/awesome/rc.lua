@@ -59,6 +59,16 @@ end
 
 run_once({ "urxvtd", "unclutter -root" }) -- entries must be separated by commas
 
+local function get_hostname()
+    local f = io.popen ("/bin/hostname")
+    local hostname = f:read("*a") or ""
+    f:close()
+    hostname = string.gsub(hostname, "\n$", "")
+    return hostname
+end
+
+local host = get_hostname()
+
 -- This function implements the XDG autostart specification
 --[[
 awful.spawn.with_shell(
@@ -76,7 +86,7 @@ awful.spawn.with_shell(
 local chosen_theme = "powerarrow-dark-falco"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "alacritty"
+local terminal     = "wezterm"
 local vi_focus     = false -- vi-like client focus - https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true -- cycle trough all previous client or just the first -- https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
@@ -437,13 +447,17 @@ globalkeys = my_table.join(
               {description = "run gui editor", group = "launcher"}),
     
     -- Hibernate/Sleep/Hybrid-Sleep system
-    awful.key({ modkey, altkey, "Shift" }, "h", function () awful.spawn.with_shell("sudo systemctl hybrid-sleep") end,
-              {description = "run sudo systemctl hybrid-sleep", group = "launcher"}),
-    awful.key({ modkey, altkey }, "h", function () awful.spawn.with_shell("sudo systemctl hibernate") end,
-              {description = "run sudo systemctl hibernate", group = "launcher"}),
+    awful.key({ modkey, altkey, "Shift" }, "h", function () awful.spawn.with_shell("hybrid-sleep.sh") end,
+              {description = "run hybrid-sleep.sh", group = "launcher"}),
+    awful.key({ modkey, altkey }, "h", function () awful.spawn.with_shell("hibernate.sh") end,
+              {description = "run hibernate.sh script", group = "launcher"}),
     awful.key({ modkey, altkey }, "s", function () awful.spawn.with_shell("suspend.sh") end,
-              {description = "run sudo systemctl suspend", group = "launcher"}),
+              {description = "run suspend.sh script", group = "launcher"}),
+--    awful.key({ modkey }, "e", function () awful.spawn.with_shell("rofi-options.sh") end,
+--              {description = "execute rofi with multiple options", group = "launcher"}),
 
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("sakura -e zellij -l ~/.config/zellij/layouts/" .. host .. ".yml") end,
+              {description = "execute rofi with multiple options", group = "launcher"}),
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
     --[[ rofi
@@ -604,6 +618,14 @@ awful.rules.rules = {
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
+
+    { rule = { name = ".*ellij.*(" .. host .. ").*" },
+          properties = { maximized = true,
+                         tag = "9",
+                         switchtotag = true,
+        } 
+    }
+
 }
 -- }}}
 
