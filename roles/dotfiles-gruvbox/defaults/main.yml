@@ -16,6 +16,7 @@ dotfile_files:
   - .config/sakura
   - .config/VSCodium/product.json
   - .config/zellij
+  - .config/wezterm
   - .config/pulse/client.conf
   - .config/pulse/daemon.conf
   - .config/pulse/default.pa
