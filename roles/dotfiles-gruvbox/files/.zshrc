@@ -117,6 +117,8 @@ fi
 
 ##################################################################
 
+alias cjb="source ~/.anaconda/bin/activate  && conda activate jupyterlab-env && jupyter-lab"
+
 alias ls="ls --color"
 alias bat="batcat"
 alias cat="batcat"
