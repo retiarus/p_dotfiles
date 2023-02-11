@@ -26,14 +26,18 @@ keybinds:
           key: [Ctrl: 'q',]
         - action: [NewPane: ]
           key: [ Alt: 'n',]
-        - action: [MoveFocusOrTab: Left,]
+        - action: [MoveFocus: Left,]
+          key: [ Alt: 'y',]
+        - action: [MoveFocus: Right,]
+          key: [ Alt: 'o',]
+        - action: [GoToPreviousTab,]
           key: [ Alt: 'h',]
-        - action: [MoveFocusOrTab: Right,]
+        - action: [GoToNextTab,]
           key: [ Alt: 'l',]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'i',]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
+          key: [ Alt: 'u',]
         - action: [FocusPreviousPane,]
           key: [ Alt: '[',]
         - action: [FocusNextPane,]
@@ -489,7 +493,6 @@ scroll_buffer_size: 100000
 # that will be used by default if this option is not set.
 # Examples:
 copy_command: "xclip -selection clipboard" # x11
-copy_command: "wl-copy"                    # wayland
 #copy_command: "pbcopy"                     # osx
 
 # Choose the destination for copied text
