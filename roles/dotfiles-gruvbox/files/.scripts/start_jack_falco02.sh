@@ -5,13 +5,10 @@
 #jack_control dps device hw:CARD=Generic
 #jack_control dps rate 48000
 #jack_control dps nperiods 2
-#jack_control dps period 256
+#jack_control dps period 512
 #
 ##alsa_out -c 8 -d hw:CARD=ICUSBAUDIO7D -j usb -n 3 -r 48000 &
 
-pactl load-module module-null-sink media.class=Audio/Duplex sink_name=default audio.position=FL,FR,RL,RR
-
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9999 &
 #
 #pactl load-module module-jack-sink sink_name=p_jack client_name=p_jack channels=2 connect=false
 
@@ -41,11 +38,6 @@ PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack zita-n2j --chan "1, 2" 192.168.5.2
 #jack_connect zita-n2j:out_7 system:playback_7
 #jack_connect zita-n2j:out_8 system:playback_8
 
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9999 & 
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9999 &
-
-sleep 1
-
 #jack_connect p_jack:front-left    j2n-falco05:in_1 
 #jack_connect p_jack:front-right   j2n-falco05:in_2 
 #jack_connect p_jack:rear-left     j2n-falco05:in_3 
@@ -65,4 +57,22 @@ sleep 1
 #jack_connect p_jack:side-right    j2n-sound01:in_8
 #pactl load-module module-jack-sink
 
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack carla ~/carla-mixer-falco02.carxp &
+pactl load-module module-null-sink media.class=Audio/Duplex sink_name=default audio.position=FL,FR,RL,RR
+
+for pid in `pgrep -x zita-j2n`
+  do
+    kill -9 $pid
+done
+
+PIPEWIRE_LATENCY="512/48000" pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9999 &
+PIPEWIRE_LATENCY="512/48000" pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9999 & 
+PIPEWIRE_LATENCY="512/48000" pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9999 &
+
+sleep 1
+
+for pid in `pgrep -x carla`
+  do
+    kill -9 $pid
+done
+
+PIPEWIRE_LATENCY="512/48000" pw-jack carla ~/carla-mixer-falco02.carxp &

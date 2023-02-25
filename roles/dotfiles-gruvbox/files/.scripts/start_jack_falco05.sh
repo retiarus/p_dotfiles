@@ -32,6 +32,17 @@
 #jack_connect zita-n2j:out_7 system:playback_7
 #jack_connect zita-n2j:out_8 system:playback_8
 
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack zita-n2j --chan "1, 2" 192.168.5.5 9999 &
-PIPEWIRE_LATENCY="256/48000" nice -11 pw-jack carla &
+for pid in `pgrep -x zita-j2n`
+  do
+    kill -9 $pid
+done
+
+PIPEWIRE_LATENCY="256/48000" pw-jack zita-n2j --chan "1, 2" 192.168.5.5 9999 &
+
+for pid in `pgrep -x carla`
+  do
+    kill -9 $pid
+done
+
+PIPEWIRE_LATENCY="256/48000" pw-jack carla &
 
