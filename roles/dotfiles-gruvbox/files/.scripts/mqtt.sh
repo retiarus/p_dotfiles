@@ -5,8 +5,10 @@ tmux split-window -v -t mqtt:0.0
 tmux send-keys -t mqtt:0.0 "cd ~/experimentos/nodejs/mqtt" Enter 
 tmux send-keys -t mqtt:0.0 "yarn start" Enter 
 
-tmux send-keys -t mqtt:0.1 "ssh peregrinus@mizumi01" Enter 
-tmux send-keys -t mqtt:0.1 "sudo docker container logs -f -n 20 mosquitto" Enter 
+#tmux send-keys -t mqtt:0.1 "autossh -M 0 peregrinus@cubietruck" Enter
+#tmux send-keys -t mqtt:0.1 "tail -f -n 20 /var/log/mosquitto/mosquitto.log" Enter 
+
+tmux send-keys -t mqtt:0.1 "autossh -M 0 peregrinus@cubietruck \"tail -f -n 20 /var/log/mosquitto/mosquitto.log\"" Enter
 
 tmux send-keys -t mqtt:0.2 "cd ~/bin" Enter 
 tmux send-keys -t mqtt:0.2 "./insomnia" Enter 
