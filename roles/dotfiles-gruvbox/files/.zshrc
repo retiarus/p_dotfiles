@@ -119,9 +119,9 @@ fi
 # alias
 ##################################################################
 
-alias stosou = systemctl --user stop pipewire pipewire-pulse wireplumber 
-alias stasou = systemctl --user start pipewire pipewire-pulse wireplumber 
-alias restasou = systemctl --user restart pipewire pipewire-pulse wireplumber 
+alias stosou="systemctl --user stop pipewire pipewire-pulse wireplumber"
+alias stasou="systemctl --user start pipewire pipewire-pulse wireplumber"
+alias restasou="systemctl --user restart pipewire pipewire-pulse wireplumber"
 
 alias cjb="source ~/.anaconda/bin/activate  && conda activate jupyterlab-env && jupyter-lab"
 
