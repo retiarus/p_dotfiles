@@ -37,12 +37,12 @@ for pid in `pgrep -x zita-j2n`
     kill -9 $pid
 done
 
-PIPEWIRE_LATENCY="256/48000" pw-jack zita-n2j --chan "1, 2" 192.168.5.5 9999 &
+pw-jack zita-n2j --chan "1, 2" 192.168.5.5 9999 &
 
 for pid in `pgrep -x carla`
   do
     kill -9 $pid
 done
 
-PIPEWIRE_LATENCY="256/48000" pw-jack carla &
+pw-jack carla &
 

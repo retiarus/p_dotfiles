@@ -64,15 +64,15 @@ for pid in `pgrep -x zita-n2j`
     kill -9 $pid
 done
 
-PIPEWIRE_LATENCY="512/48000" pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9999 &
+pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9999 &
 
 for pid in `pgrep -x zita-j2n`
   do
     kill -9 $pid
 done
 
-PIPEWIRE_LATENCY="512/48000" pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9999 & 
-PIPEWIRE_LATENCY="512/48000" pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9999 &
+pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9999 & 
+pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9999 &
 
 sleep 1
 
@@ -81,4 +81,4 @@ for pid in `pgrep -x carla`
     kill -9 $pid
 done
 
-PIPEWIRE_LATENCY="512/48000" pw-jack carla ~/carla-mixer-falco02.carxp &
+pw-jack carla ~/carla-mixer-falco02.carxp &
