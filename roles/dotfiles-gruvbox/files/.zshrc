@@ -234,7 +234,7 @@ bindkey  "^[[3~"  delete-char
 
 ##################################################################
 
-source <(kubectl completion zsh)
+[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 export KUBECONFIG=$KUBECONFIG:~/.kube/config
 
 ##################################################################
