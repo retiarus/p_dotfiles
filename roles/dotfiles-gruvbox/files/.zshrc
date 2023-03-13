@@ -201,7 +201,7 @@ export WORKON_HOME=$HOME/.virt_envs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 
-source $HOME/.local/bin/virtualenvwrapper.sh
+[[ -s $HOME/.local/bin/virtualenvwrapper.sh ]] && source $HOME/.local/bin/virtualenvwrapper.sh
 
 ##################################################################
 
