@@ -4,7 +4,7 @@ return {
   font_size = 10.4,
   dpi = 96.0,
   custom_block_glyphs = false,
-  color_scheme = "Gruvbox Dark",
+  color_scheme = "gruvboxdarkoriginal",
   use_fancy_tab_bar = false,
 
   colors = {
