@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CARLA-PROJECT>
+<CARLA-PROJECT VERSION='2.5'>
+ <EngineSettings>
+  <ForceStereo>false</ForceStereo>
+  <PreferPluginBridges>false</PreferPluginBridges>
+  <PreferUiBridges>true</PreferUiBridges>
+  <UIsAlwaysOnTop>false</UIsAlwaysOnTop>
+  <MaxParameters>200</MaxParameters>
+  <UIBridgesTimeout>4000</UIBridgesTimeout>
+ </EngineSettings>
+
+ <Transport>
+  <BeatsPerMinute>120</BeatsPerMinute>
+ </Transport>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>0.781299</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>0.950980365276337</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo) (3)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>0.2054412</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>4</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo) (4)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>0.2054412</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>1.68567430973053</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo) (5)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>0.2054412</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>1.2248899936676</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <ExternalPatchbay>
+  <Connection>
+   <Source>Audio Gain (Stereo):output_1</Source>
+   <Target>Áudio interno Estéreo analógico:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo):output_2</Source>
+   <Target>Áudio interno Estéreo analógico:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (3):output_1</Source>
+   <Target>zita-j2n-falco05:in_1</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (3):output_2</Source>
+   <Target>zita-j2n-falco05:in_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (4):output_1</Source>
+   <Target>zita-j2n-falco02:in_1</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (4):output_2</Source>
+   <Target>zita-j2n-falco02:in_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (5):output_1</Source>
+   <Target>zita-j2n-sound01:in_1</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (5):output_2</Source>
+   <Target>zita-j2n-sound01:in_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL</Source>
+   <Target>default Audio/Duplex sink:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR</Source>
+   <Target>default Audio/Duplex sink:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FL</Source>
+   <Target>Audio Gain (Stereo) (3):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FL</Source>
+   <Target>Audio Gain (Stereo) (4):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FL</Source>
+   <Target>Audio Gain (Stereo) (5):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FL</Source>
+   <Target>Audio Gain (Stereo):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FR</Source>
+   <Target>Audio Gain (Stereo) (3):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FR</Source>
+   <Target>Audio Gain (Stereo) (4):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FR</Source>
+   <Target>Audio Gain (Stereo) (5):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>default Audio/Duplex sink:capture_FR</Source>
+   <Target>Audio Gain (Stereo):input_2</Target>
+  </Connection>
+  <Positions>
+   <Position x1="1550" y1="1274" x2="1896" y2="1418">
+    <Name>Carla</Name>
+   </Position>
+   <Position x1="1536" y1="1251" x2="2167" y2="1319">
+    <Name>Áudio interno Estéreo analógico</Name>
+   </Position>
+   <Position x1="1593" y1="1494">
+    <Name>default Audio/Duplex sink</Name>
+   </Position>
+   <Position x1="1790" y1="1566" x2="2193" y2="1708">
+    <Name>zita-j2n-sound01</Name>
+   </Position>
+   <Position x1="1790" y1="1492" x2="2189" y2="1601">
+    <Name>zita-j2n-falco02</Name>
+   </Position>
+   <Position x1="1784" y1="1452" x2="2212" y2="1454">
+    <Name>zita-j2n-falco05</Name>
+   </Position>
+   <Position x1="1550" y1="1348" x2="1941" y2="1221">
+    <Name>Midi-Bridge</Name>
+   </Position>
+   <Position x1="1922" y1="1343" pluginId="0">
+    <Name>Audio Gain (Stereo)</Name>
+   </Position>
+   <Position x1="1915" y1="1478" pluginId="1">
+    <Name>Audio Gain (Stereo) (3)</Name>
+   </Position>
+  </Positions>
+ </ExternalPatchbay>
+</CARLA-PROJECT>

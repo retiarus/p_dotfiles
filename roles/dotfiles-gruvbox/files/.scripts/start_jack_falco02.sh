@@ -81,4 +81,4 @@ for pid in `pgrep -x carla`
     kill -9 $pid
 done
 
-pw-jack carla ~/carla-mixer-falco02.carxp &
+pw-jack carla ~/.config/carla-mixer/falco02.carxp &

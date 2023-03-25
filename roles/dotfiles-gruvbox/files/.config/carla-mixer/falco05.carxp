@@ -1,0 +1,457 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CARLA-PROJECT>
+<CARLA-PROJECT VERSION='2.4'>
+ <EngineSettings>
+  <ForceStereo>false</ForceStereo>
+  <PreferPluginBridges>false</PreferPluginBridges>
+  <PreferUiBridges>true</PreferUiBridges>
+  <UIsAlwaysOnTop>false</UIsAlwaysOnTop>
+  <MaxParameters>200</MaxParameters>
+  <UIBridgesTimeout>4000</UIBridgesTimeout>
+ </EngineSettings>
+
+ <Transport>
+  <BeatsPerMinute>120</BeatsPerMinute>
+ </Transport>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>1.27</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>4</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo) (2)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>4</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- Dragonfly Room Reverb -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Dragonfly Room Reverb</Name>
+   <URI>urn:dragonfly:room</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Dry Level</Name>
+    <Symbol>dry_level</Symbol>
+    <Value>80</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Early Level</Name>
+    <Symbol>early_level</Symbol>
+    <Value>10</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Early Send</Name>
+    <Symbol>early_send</Symbol>
+    <Value>20</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>3</Index>
+    <Name>Late Level</Name>
+    <Symbol>late_level</Symbol>
+    <Value>20</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>4</Index>
+    <Name>Size</Name>
+    <Symbol>size</Symbol>
+    <Value>12</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>5</Index>
+    <Name>Width</Name>
+    <Symbol>width</Symbol>
+    <Value>100</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>6</Index>
+    <Name>Predelay</Name>
+    <Symbol>predelay</Symbol>
+    <Value>8</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>7</Index>
+    <Name>Decay</Name>
+    <Symbol>decay</Symbol>
+    <Value>0.400000005960464</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>8</Index>
+    <Name>Diffuse</Name>
+    <Symbol>diffuse</Symbol>
+    <Value>70</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>9</Index>
+    <Name>Spin</Name>
+    <Symbol>spin</Symbol>
+    <Value>0.800000011920929</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>10</Index>
+    <Name>Wander</Name>
+    <Symbol>wander</Symbol>
+    <Value>40</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>11</Index>
+    <Name>High Cut</Name>
+    <Symbol>in_high_cut</Symbol>
+    <Value>16000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>12</Index>
+    <Name>Early Damp</Name>
+    <Symbol>early_damp</Symbol>
+    <Value>10000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>13</Index>
+    <Name>Late Damp</Name>
+    <Symbol>late_damp</Symbol>
+    <Value>9400</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>14</Index>
+    <Name>Low Boost</Name>
+    <Symbol>low_boost</Symbol>
+    <Value>50</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>15</Index>
+    <Name>Boost Freq</Name>
+    <Symbol>boost_freq</Symbol>
+    <Value>600</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>16</Index>
+    <Name>Low Cut</Name>
+    <Symbol>in_low_cut</Symbol>
+    <Value>4</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#String</Type>
+    <Key>urn:distrho:preset</Key>
+    <Value>Medium Clear Room</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Dragonfly Room Reverb -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Dragonfly Room Reverb (2)</Name>
+   <URI>urn:dragonfly:room</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>1.27</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Dry Level</Name>
+    <Symbol>dry_level</Symbol>
+    <Value>80</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Early Level</Name>
+    <Symbol>early_level</Symbol>
+    <Value>10</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Early Send</Name>
+    <Symbol>early_send</Symbol>
+    <Value>20</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>3</Index>
+    <Name>Late Level</Name>
+    <Symbol>late_level</Symbol>
+    <Value>20</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>4</Index>
+    <Name>Size</Name>
+    <Symbol>size</Symbol>
+    <Value>12</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>5</Index>
+    <Name>Width</Name>
+    <Symbol>width</Symbol>
+    <Value>100</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>6</Index>
+    <Name>Predelay</Name>
+    <Symbol>predelay</Symbol>
+    <Value>8</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>7</Index>
+    <Name>Decay</Name>
+    <Symbol>decay</Symbol>
+    <Value>0.400000005960464</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>8</Index>
+    <Name>Diffuse</Name>
+    <Symbol>diffuse</Symbol>
+    <Value>70</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>9</Index>
+    <Name>Spin</Name>
+    <Symbol>spin</Symbol>
+    <Value>0.800000011920929</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>10</Index>
+    <Name>Wander</Name>
+    <Symbol>wander</Symbol>
+    <Value>40</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>11</Index>
+    <Name>High Cut</Name>
+    <Symbol>in_high_cut</Symbol>
+    <Value>16000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>12</Index>
+    <Name>Early Damp</Name>
+    <Symbol>early_damp</Symbol>
+    <Value>10000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>13</Index>
+    <Name>Late Damp</Name>
+    <Symbol>late_damp</Symbol>
+    <Value>9400</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>14</Index>
+    <Name>Low Boost</Name>
+    <Symbol>low_boost</Symbol>
+    <Value>50</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>15</Index>
+    <Name>Boost Freq</Name>
+    <Symbol>boost_freq</Symbol>
+    <Value>600</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>16</Index>
+    <Name>Low Cut</Name>
+    <Symbol>in_low_cut</Symbol>
+    <Value>4</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#String</Type>
+    <Key>urn:distrho:preset</Key>
+    <Value>Medium Clear Room</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Audio Gain (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>INTERNAL</Type>
+   <Name>Audio Gain (Stereo) (3)</Name>
+   <Label>audiogain_s</Label>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>1.27</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Gain</Name>
+    <Value>4</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Apply Left</Name>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Apply Right</Name>
+    <Value>1</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <ExternalPatchbay>
+  <Connection>
+   <Source>zita-n2j:out_1</Source>
+   <Target>Audio Gain (Stereo):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>zita-n2j:out_1</Source>
+   <Target>Audio Gain (Stereo) (2):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>zita-n2j:out_2</Source>
+   <Target>Audio Gain (Stereo):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>zita-n2j:out_2</Source>
+   <Target>Audio Gain (Stereo) (2):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo):output_1</Source>
+   <Target>Dragonfly Room Reverb:Audio Input 1</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo):output_2</Source>
+   <Target>Dragonfly Room Reverb:Audio Input 2</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (2):output_1</Source>
+   <Target>Dragonfly Room Reverb (2):Audio Input 1</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (2):output_2</Source>
+   <Target>Dragonfly Room Reverb (2):Audio Input 2</Target>
+  </Connection>
+  <Connection>
+   <Source>Dragonfly Room Reverb (2):Audio Output 1</Source>
+   <Target>EMU10k1 [Sound Blaster Live! Series] (SB0220/0222 SBLive! 5.1 Digital) Estéreo analógico:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Dragonfly Room Reverb (2):Audio Output 2</Source>
+   <Target>EMU10k1 [Sound Blaster Live! Series] (SB0220/0222 SBLive! 5.1 Digital) Estéreo analógico:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Dragonfly Room Reverb:Audio Output 1</Source>
+   <Target>Audio Gain (Stereo) (3):input_1</Target>
+  </Connection>
+  <Connection>
+   <Source>Dragonfly Room Reverb:Audio Output 2</Source>
+   <Target>Audio Gain (Stereo) (3):input_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (3):output_1</Source>
+   <Target>YET-T10 Estéreo analógico:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Audio Gain (Stereo) (3):output_2</Source>
+   <Target>YET-T10 Estéreo analógico:playback_FR</Target>
+  </Connection>
+ </ExternalPatchbay>
+</CARLA-PROJECT>
