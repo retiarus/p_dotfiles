@@ -13,8 +13,9 @@ dotfile_files:
   - .config/pluma
   - .config/ranger
   - .config/rofi
+  - .config/rbw
   - .config/sakura
-  - .config/VSCodium/product.json
+  - .config/VSCodium
   - .config/zellij
   - .config/wezterm
   - .config/pulse/client.conf

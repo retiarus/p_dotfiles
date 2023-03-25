@@ -116,6 +116,11 @@
     name: black
     extra_args: --user
 
+- name: install rofi-rbw
+  pip:
+    name: pynvim
+    extra_args: --user
+
 - name: download homebrew
   get_url:
     url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
@@ -171,6 +176,12 @@
 
 - name: install ripgrep
   command: ./cargo install ripgrep
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install rbw
+  command: ./cargo install rbw
   args:
     chdir: ~/.cargo/bin/
   ignore_errors: true
