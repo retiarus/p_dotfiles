@@ -5,6 +5,7 @@ dotfile_files:
   - .config/alacritty
   - .config/awesome
   - .config/bat
+  - .config/carla-mixer
   - .config/gedit
   - .config/gtk-3.0
   - .config/kitty
