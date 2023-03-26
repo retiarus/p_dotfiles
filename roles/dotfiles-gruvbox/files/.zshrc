@@ -25,6 +25,12 @@ source ~/.zinit/bin/zinit.zsh
 
 ##################################################################
 
+ZINIT_CACHE="~/.cache/zinit/completions"
+
+[[ ! -d $ZINIT_CACHE ]] && mkdir $ZINIT_CACHE
+
+##################################################################
+
 zinit light  "zsh-users/zsh-completions"
 zinit light  "zdharma-continuum/fast-syntax-highlighting"
 zinit light  "zsh-users/zsh-autosuggestions"
