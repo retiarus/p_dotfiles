@@ -8,6 +8,11 @@
     path: "~/.zinit"
     state: directory
 
+- name: create .cache/zinit/completions
+  file:
+    path: "~/.cache/zinit/completions"
+    state: directory
+
 - name: create .local/share/nvim/site/autoload/
   file:
     path: "~/.local/share/nvim/site/autoload/"
@@ -118,7 +123,12 @@
 
 - name: install rofi-rbw
   pip:
-    name: pynvim
+    name: rofi-rbw
+    extra_args: --user
+
+- name: install rofi-rbw
+  pip:
+    name: tldextract
     extra_args: --user
 
 - name: download homebrew
