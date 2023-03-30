@@ -10,6 +10,8 @@ fi
 list_path=($HOME/.cargo/bin
            $HOME/go/bin \
            $HOME/.local/bin \
+           $HOME/bin \
+           $HOME/bin/scripts \
            /usr/local/bin)
 
 for i in ${list_path[@]}
