@@ -106,6 +106,12 @@
     recursive: yes
     force: yes
 
+- name: run packer to bootstrap config
+  command: /home/peregrinus/.local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  args:
+    chdir: ~/
+  ignore_errors: true
+
 - name: install virtualenvwrapper
   pip:
     name: virtualenvwrapper
