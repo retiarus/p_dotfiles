@@ -64,7 +64,7 @@ for pid in `pgrep -x zita-n2j`
     kill -9 $pid
 done
 
-pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9999 &
+pw-jack zita-n2j --chan "1, 2" 192.168.5.2 9996 --jname n2j-9996 &
 
 for pid in `pgrep -x zita-j2n`
   do
