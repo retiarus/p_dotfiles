@@ -71,8 +71,8 @@ for pid in `pgrep -x zita-j2n`
     kill -9 $pid
 done
 
-pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9999 & 
-pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9999 &
+pw-jack zita-j2n --jname j2n-falco05 --chan 2 192.168.5.5 9992 & 
+pw-jack zita-j2n --jname j2n-sound01 --chan 2 192.168.5.41 9992 &
 
 sleep 1
 

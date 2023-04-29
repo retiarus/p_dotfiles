@@ -298,11 +298,11 @@
 
  <ExternalPatchbay>
   <Connection>
-   <Source>zita-n2j:out_1</Source>
+   <Source>n2j-9996:out_1</Source>
    <Target>Audio Gain (Stereo) (4):input_1</Target>
   </Connection>
   <Connection>
-   <Source>zita-n2j:out_2</Source>
+   <Source>n2j-9996:out_2</Source>
    <Target>Audio Gain (Stereo) (4):input_2</Target>
   </Connection>
   <Connection>
@@ -360,6 +360,22 @@
   <Connection>
    <Source>Audio Gain (Stereo) (4):output_2</Source>
    <Target>Family 17h (Models 00h-0fh) HD Audio Controller Estéreo analógico:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL</Source>
+   <Target>default Audio/Duplex sink:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FL-434</Source>
+   <Target>default Audio/Duplex sink:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR</Source>
+   <Target>default Audio/Duplex sink:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Firefox:output_FR-435</Source>
+   <Target>default Audio/Duplex sink:playback_FR</Target>
   </Connection>
   <Connection>
    <Source>default Audio/Duplex sink Monitor:capture_FL</Source>
