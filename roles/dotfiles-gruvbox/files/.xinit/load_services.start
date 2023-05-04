@@ -32,21 +32,23 @@ done
 if [ -x "$(command -v barrier)" ]; then
   if [[ $(hostname) == falco02 ]]; then
     path=$(command -v barriers)
-    is_running=`pgrep -x barriers`
-    if [[ $is_running == ""]]; then
-      printf "Carregando barrier daemon\n"V
+    if [[ `pgrep -x barriers` == "" ]]; then
+      printf "carregando barrier daemon\n"
       $path -d DEBUG -c /home/peregrinus/.xinit/barrier-falco02.conf --enable-crypto --name falco02 --address :24800
+    else
+      printf "barrier server is already running\n"
     fi
   else
     path=$(command -v barrierc)
-    is_running=`pgrep -x barrierc`
-    if [[ $is_running == ""]]; then
-      printf "start barrier client"
+    if [[ `pgrep -x barrierc` == "" ]]; then
+      printf "start barrier client\n"
       $path --enable-crypto falco02:24800
+    else
+      printf "barrier client is already running\n"
     fi
   fi
 else
-  printf "barrier não está instalado"
+  printf "barrier não está instalado\n"
 fi
 
 ##########################################################################################
