@@ -128,8 +128,16 @@ alias restasou="systemctl --user restart pipewire pipewire-pulse wireplumber"
 alias cjb="source ~/.anaconda/bin/activate  && conda activate jupyterlab-env && jupyter-lab"
 
 alias ls="ls --color"
-alias bat="batcat"
-alias cat="batcat"
+
+[ -x "$(command -v /usr/bin/bat)" ] && {
+  alias bat="bat"
+  alias cat="bat"
+} 
+
+[ -x "$(command -v /usr/bin/batcat)" ] && {
+  alias bat="batcat"
+  alias cat="batcat"
+} 
 
 alias zrc="nvim ~/.zshrc"
 
@@ -256,3 +264,20 @@ eval "$(zoxide init zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 (( ! ${+functions[p10k]} )) || p10k finalize
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/peregrinus/.p_dotfiles/roles/dotfiles-gruvbox/files/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/peregrinus/.micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "/home/peregrinus/.micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/peregrinus/.micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="/home/peregrinus/.micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
