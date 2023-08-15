@@ -70,6 +70,8 @@ export FZF_BASE="/home/peregrinus/.sources/fzf/bin/fzf"
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
+zinit load atuinsh/atuin
+
 #zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
 #zinit light docker/compose
 

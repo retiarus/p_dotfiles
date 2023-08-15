@@ -202,6 +202,48 @@
     chdir: ~/.cargo/bin/
   ignore_errors: true
 
+- name: install fd-find
+  command: ./cargo install fd-find
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install trippy
+  command: ./cargo install trippy
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install melody
+  command: ./cargo install melody_cli
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install hck
+  command: ./cargo install hck
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install mprocs
+  command: ./cargo install mprocs
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install verco
+  command: ./cargo install verco
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
+- name: install atuin
+  command: ./cargo install atuin
+  args:
+    chdir: ~/.cargo/bin/
+  ignore_errors: true
+
 - name: download Insomnia
   get_url:
     url: https://github.com/Kong/insomnia/releases/download/core%402022.5.1/Insomnia.Core-2022.5.1.AppImage
