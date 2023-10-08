@@ -179,7 +179,7 @@
 
 - name: install wezterm
   get_url:
-    url: https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/WezTerm-20221119-145034-49b9839f-Ubuntu18.04.AppImage
+    url: https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/WezTerm-20230712-072601-f4abf8fd-Ubuntu20.04.AppImage
     dest: ~/bin/wezterm
     mode: '0500'
   ignore_errors: true
