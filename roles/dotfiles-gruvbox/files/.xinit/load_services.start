@@ -30,11 +30,11 @@ done
 ##########################################################################################
 
 if [ -x "$(command -v barrier)" ]; then
-  if [[ $(hostname) == falco02 ]]; then
+  if [[ $(hostname) == falco02.falcolabs.net ]]; then
     path=$(command -v barriers)
     if [[ `pgrep -x barriers` == "" ]]; then
       printf "carregando barrier daemon\n"
-      $path -d DEBUG -c /home/peregrinus/.xinit/barrier-falco02.conf --enable-crypto --name falco02 --address :24800
+      $path -d DEBUG -c /home/peregrinus/.xinit/barrier-falco02.conf --enable-crypto --name falco02.falcolabs.net --address :24800
     else
       printf "barrier server is already running\n"
     fi
@@ -42,7 +42,7 @@ if [ -x "$(command -v barrier)" ]; then
     path=$(command -v barrierc)
     if [[ `pgrep -x barrierc` == "" ]]; then
       printf "start barrier client\n"
-      $path --enable-crypto falco02:24800
+      $path --enable-crypto falco02.falcolabs.net:24800
     else
       printf "barrier client is already running\n"
     fi
@@ -71,7 +71,7 @@ fi
 
 ##########################################################################################
 
-if [[ $(hostname) == falco02 ]]; then
+if [[ $(hostname) == falco02.falcolabs.net ]]; then
   if [ -x "$(command -v xrandr)" ]; then
     printf "Configurando monitor\n"
     xrandr --output HDMI-A-0 --right-of DVI-D-0
@@ -80,7 +80,7 @@ if [[ $(hostname) == falco02 ]]; then
   fi
 fi
 
-if [[ $(hostname) == falco03 ]]; then
+if [[ $(hostname) == falco03.falcolabs.net ]]; then
   if [ -x "$(command -v xrandr)" ]; then
     printf "Configurando monitor\n"
     xrandr --output VGA-1 --mode 1440x900 --left-of LVDS-1
