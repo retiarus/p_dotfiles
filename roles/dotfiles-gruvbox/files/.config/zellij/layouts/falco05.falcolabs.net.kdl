@@ -1,0 +1,19 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="audio" {
+    pane command="start_jack.sh"
+  }
+  tab name="mqtt" {
+    pane command="mqtt.sh"
+  }
+}
+session_name "pmixer-falco05"
+attach_to_session true
