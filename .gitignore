@@ -20,3 +20,15 @@ roles/dotfiles*/files/.local/share/nvim/log
 roles/dotfiles*/files/.tmux/plugins/*
 
 roles/dotfiles-gruvbox/files/.config/nvim/plugin/*
+
+roles/dotfiles-gruvbox/files/bin/Beekeeper-Studio-3.8.9.AppImage
+roles/dotfiles-gruvbox/files/bin/SquareLine/
+roles/dotfiles-gruvbox/files/bin/greenclip
+roles/dotfiles-gruvbox/files/bin/insomnia
+roles/dotfiles-gruvbox/files/bin/julia
+roles/dotfiles-gruvbox/files/bin/kitty
+roles/dotfiles-gruvbox/files/bin/kubectl
+roles/dotfiles-gruvbox/files/bin/micromamba
+roles/dotfiles-gruvbox/files/bin/step
+roles/dotfiles-gruvbox/files/bin/wezterm
+roles/dotfiles-gruvbox/files/bin/zotero
