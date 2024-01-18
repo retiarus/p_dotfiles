@@ -32,3 +32,5 @@ roles/dotfiles-gruvbox/files/bin/micromamba
 roles/dotfiles-gruvbox/files/bin/step
 roles/dotfiles-gruvbox/files/bin/wezterm
 roles/dotfiles-gruvbox/files/bin/zotero
+
+roles/dotfiles-gruvbox/files/.ansible/roles/*
