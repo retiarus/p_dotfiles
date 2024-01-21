@@ -456,8 +456,11 @@ globalkeys = my_table.join(
 --    awful.key({ modkey }, "e", function () awful.spawn.with_shell("rofi-options.sh") end,
 --              {description = "execute rofi with multiple options", group = "launcher"}),
 
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("sakura -e zellij -l ~/.config/zellij/layouts/" .. host .. ".kdl") end,
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("rofi-options.sh") end,
               {description = "execute rofi with multiple options", group = "launcher"}),
+    
+    awful.key({ modkey }, "t", function () awful.spawn.with_shell("rofi-mqtt.sh") end,
+              {description = "execute rofi mqtt", group = "launcher"}),
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
     --[[ rofi
