@@ -80,6 +80,8 @@ done
 if [ -x "$(command -v xset)" ]; then
   printf "Definindo desligamento automático do monitor\n"
   xset dpms 0 0 300 &
+  xset s 300 5 &
+  xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
  fi
 
 ##########################################################################################
